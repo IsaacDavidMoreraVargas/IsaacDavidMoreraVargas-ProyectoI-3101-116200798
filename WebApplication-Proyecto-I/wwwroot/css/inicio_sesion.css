@@ -1,0 +1,29 @@
+﻿.contenedor-columna {
+    height: 50%;
+}
+
+.contenedor-fila {
+    margin-top: 0%;
+    margin-left: 25%;
+    width: 50%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.contenedor-titulo {
+    width: 100%;
+    margin-top: 0%;
+    margin-left: 0%;
+    text-align: center;
+    border-radius: 2px 2px 0px 0px;
+    display: block;
+}
+
+.contenedor-datos {
+    margin-top: 4%;
+    margin-left: 1%;
+    margin-bottom: 1%;
+    width: 99%;
+    border-radius: 5px;
+}
+

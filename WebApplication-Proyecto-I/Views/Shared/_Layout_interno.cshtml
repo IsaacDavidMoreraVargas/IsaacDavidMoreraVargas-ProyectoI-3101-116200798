@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Sistema registro Enfermedades</title>
+    <link rel="stylesheet" type="text/css" href="~/css/general.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/layout.css" />
+    <script type="text/javascript" src="~/js/funciones.js"></script>
+    @RenderSection("css", false)
+</head>
+<body>
+    <header>
+        <div class="body-layout color-menu">
+            <div class="option-layout" id="option-layout1" onmouseover="show_ul_options('option-layout1')" onmouseout="show_ul_options('option-layout1')">
+                <label class="title-layout">Registrar Nueva Enfermedad</label>
+                <ul>
+                    <li><a asp-controller="NuevaEnfermedad" asp-action="Index">Registro Profesional</a></li>
+                    <li><a asp-controller="NuevaEnfermedad" asp-action="Index">Informacion Clinica</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+   
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

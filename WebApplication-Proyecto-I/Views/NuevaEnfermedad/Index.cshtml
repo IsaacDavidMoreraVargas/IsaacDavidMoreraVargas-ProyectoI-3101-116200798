@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@{
+    Layout = "_Layout_interno";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/general.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/dos_columnas.css" />
+    <script type="text/javascript" src="~/js/funciones.js"></script>
+</head>
+<body onload="check_Empty()">
+    <div class="contenedor-columna">
+        <form method="post" enctype="multipart/form-data" asp-controller="" asp-action="">
+            <div class="contenedor-fila border-padre">
+                <label class="contenedor-titulo color-titulo-padre">Datos Profesional</label>
+                <div class="contenedor-datos">
+                    <label class="titulo-valor color-padre">Identificacion</label>
+                    <input class="input-valor border-hijo" id="" runat="server" value="" type="number" onkeyup="check_Empty()" />
+                </div>
+                <div class="contenedor-datos">
+                    <label class="titulo-valor color-padre">Codigo profesional</label>
+                    <input class="input-valor border-hijo" id="" runat="server" value="" type="number" onkeyup="check_Empty()" />
+                </div>
+                <div class="contenedor-datos">
+                    <label class="titulo-valor color-padre">Nombre Completo</label>
+                    <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()"/>
+                </div>
+            </div>
+            <div class="contenedor-fila border-padre">
+                <label class="contenedor-titulo color-titulo-padre">Datos Profesional</label>
+                <div class="contenedor-datos">
+                    <label class="titulo-valor color-padre">Correo Electronico</label>
+                    <input class="input-valor border-hijo" id="" runat="server" value="" type="email" onkeyup="check_Empty()" />
+                </div>
+                <div class="contenedor-datos">
+                    <label class="titulo-valor color-padre">Pais</label>
+                    <select class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()">
+                        <option value="">value</option>
+                    </select>
+                </div>
+                <div class="contenedor-datos">
+                    <label class="titulo-valor color-padre">Estado</label>
+                    <select class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()">
+                        <option value="">value</option>
+                    </select>
+                </div>
+                <div class="contenedor-datos">
+                    <label class="titulo-valor color-padre">Provincia</label>
+                    <select class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()">
+                        <option value="">value</option>
+                    </select>
+                </div>
+            </div>
+            <input class="button-to-submit" id="button-form" type="submit" value="Registrar" />
+        </form>
+    </div>
+</body>
+</html>
+
+<!--
+<div class="contenedor-datos">
+    <label class="titulo-valor color-padre">Clinica atencion</label>
+    <select class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()">
+        <option value="">value</option>
+    </select>
+</div>
+-->
