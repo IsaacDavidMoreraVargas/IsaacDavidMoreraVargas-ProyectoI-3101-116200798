@@ -1,14 +1,85 @@
-﻿html, body,.container,main {
+﻿html {
     padding: 0%;
     margin: 0%;
     width: 100%;
-    height: 97%;
-    margin-top:0%;
+    height: 99%;
+    min-height: 99vh;
+    max-height: 99vh;
 }
-.contenedor-columna {
-    margin-left: 1%;
+body {
+    margin-top: 0%;
+    margin-left: 0%;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    max-height: 100vh;
+}
+header {
+    margin-top: 0%;
+    width: 100%;
+    height: 5%;
+}
+.container {
+    width: 100%;
+    height: 95%;
+}
+main {
+    padding: 0%;
+    margin: 0%;
+    width: 100%;
+    height: 100%;
+    margin-top: 0%;
+}
+.contenedor-flechas {
     margin-top: 1%;
     width: 99%;
+    display: inline-block;
+}
+.contenedor-izquierda, .leyenda-flechas, .contenedor-derecha {
+    float:left;
+    display:block;
+}
+
+.contenedor-izquierda, .contenedor-derecha {
+    width: 10%;
+    height: 100%;
+    background-color: #65CAFC;
+    border: 1px solid #65CAFC;
+}
+.contenedor-izquierda:hover, .contenedor-derecha:hover {
+    border: 1px solid black;
+    color: white;
+}
+
+.contenedor-izquierda {
+    text-align: left;
+    margin-left: 1%;
+}
+
+.contenedor-derecha {
+    text-align: right;
+}
+
+.leyenda-flechas {
+    margin-left: 1%;
+    width: 75%;
+    height: 100%;
+    text-align: center;
+    background-color: black;
+    border: 1px solid black;
+    color: white;
+}
+
+.contenedor-derecha {
+    margin-left:1%;
+}
+    
+.contenedor-columna {
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-top: 1%;
+    width: 100%;
+    height: 99%;
 }
 
 .color-titulo-padre {
@@ -43,7 +114,7 @@
 
 .color-select {
     background-color: #65CAFC;
-    border: none;
+    border: 1px solid #65CAFC;
     color: black;
     text-align: center;
 }
@@ -69,12 +140,24 @@ form {
     display: block;
 }
 
+.titulo-checkbox-valor {
+    text-align: left;
+    width: 90%;
+    float: left;
+}
+
 .input-valor {
     margin-top: 1%;
     margin-left: 0%;
     border-radius: 5px;
 }
 
+.checkbox-valor {
+    margin-top: 0%;
+    margin-left: 1%;
+    border-radius: 5px;
+    transform: scale( 1.5 );
+}
 .button-to-submit {
     bottom: 0%;
     padding: 0%;
@@ -82,7 +165,6 @@ form {
     margin-top: 1%;
     margin-left: 38%;
     width: 25%;
-    height: 10%;
     border-radius: 5px;
     background-color: black;
     color: white;

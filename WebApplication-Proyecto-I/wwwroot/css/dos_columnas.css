@@ -1,6 +1,5 @@
 ﻿.contenedor-columna {
-    height: 50%;
-    display: inline-block;
+    height: 80%;
 }
 
 .contenedor-fila {
@@ -12,8 +11,13 @@
     display: block;
     float: left;
     position: relative;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
-
+.contenedor-fila::-webkit-scrollbar {
+    display: none;
+}
 .contenedor-titulo {
     width: 100%;
     margin-top: 0%;
@@ -24,7 +28,7 @@
 }
 
 .contenedor-datos {
-    margin-top: 4%;
+    margin-top: 2%;
     margin-left: 1%;
     margin-bottom: 1%;
     width: 99%;
