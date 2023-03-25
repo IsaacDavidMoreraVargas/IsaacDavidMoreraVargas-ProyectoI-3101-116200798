@@ -1,14 +1,107 @@
-﻿html, body,.container,main {
+﻿html {
     padding: 0%;
     margin: 0%;
     width: 100%;
-    height: 97%;
-    margin-top:0%;
+    height: 99%;
+    min-height: 99vh;
+    max-height: 99vh;
 }
-.contenedor-columna {
-    margin-left: 1%;
+body {
+    margin-top: 0%;
+    margin-left: 0%;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    max-height: 100vh;
+}
+header {
+    margin-top: 0%;
+    width: 100%;
+    height: 5%;
+}
+.container {
+    width: 100%;
+    height: 95%;
+}
+main {
+    padding: 0%;
+    margin: 0%;
+    width: 100%;
+    height: 100%;
+    margin-top: 0%;
+}
+.contenedor-flechas {
     margin-top: 1%;
     width: 99%;
+    display: inline-block;
+}
+.contenedor-izquierda, .leyenda-flechas, .contenedor-derecha {
+    float:left;
+    display:block;
+}
+
+.contenedor-izquierda, .contenedor-derecha {
+    width: 10%;
+    height: 100%;
+    background-color: #65CAFC;
+    border: 1px solid #65CAFC;
+}
+
+.contenedor-izquierda-apagado, .contenedor-derecha-apagado {
+    float: left;
+    display: block;
+    width: 10%;
+    height: 100%;
+    background-color: lightgray;
+    color: dimgrey;
+    border: 1px solid dimgrey;
+}
+
+.contenedor-izquierda-apagado {
+    text-align: left;
+    margin-left: 1%;
+}
+
+.contenedor-derecha-apagado {
+    text-align: right;
+    margin-left: 1%;
+}
+
+.contenedor-izquierda-apagado:hover, .contenedor-derecha-apagado:hover {
+    border: 1px solid dimgrey;
+}
+
+.contenedor-izquierda:hover, .contenedor-derecha:hover {
+        border: 1px solid black;
+        color: white;
+}
+
+.contenedor-izquierda {
+    text-align: left;
+    margin-left: 1%;
+}
+
+.contenedor-derecha {
+    text-align: right;
+    margin-left: 1%;
+}
+
+.leyenda-flechas {
+    margin-left: 1%;
+    width: 75%;
+    height: 100%;
+    text-align: center;
+    background-color: black;
+    border: 1px solid black;
+    color: white;
+}
+    
+.contenedor-columna {
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-top: 1%;
+    width: 100%;
+    height: 99%;
 }
 
 .color-titulo-padre {
@@ -43,7 +136,7 @@
 
 .color-select {
     background-color: #65CAFC;
-    border: none;
+    border: 1px solid #65CAFC;
     color: black;
     text-align: center;
 }
@@ -53,7 +146,24 @@ form {
     height: 100%;
     margin-left: 0%;
 }
+.container-leyenda {
+    margin-top: 2%;
+    margin-left: 1%;
+    width: 97%;
+    background-color: #FF925D; 
+    border-radius: 5px;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+}
 
+.leyenda-titulo {
+    margin-top: 0%;
+    margin-left: 0%;
+    width: 100%;
+    color: black;
+    text-align: center;
+    display:block;
+}
 .titulo-valor, .input-valor {
     margin-top: 0%;
     margin-left: 0%;
@@ -69,12 +179,38 @@ form {
     display: block;
 }
 
+.titulo-checkbox-valor {
+    text-align: left;
+    width: 90%;
+    float: left;
+}
+
 .input-valor {
     margin-top: 1%;
     margin-left: 0%;
     border-radius: 5px;
 }
 
+.input-date {
+    width: 97%;
+    margin-top: 1%;
+    margin-left: 0%;
+    border-radius: 5px;
+}
+
+.input-date-date {
+    width: 1.5%;
+    margin-top: 1%;
+    margin-left: 0%;
+    float: left;
+}
+
+.checkbox-valor {
+    margin-top: 0.5%;
+    margin-left: 1%;
+    border-radius: 5px;
+    transform: scale( 1.5 );
+}
 .button-to-submit {
     bottom: 0%;
     padding: 0%;
@@ -82,15 +218,14 @@ form {
     margin-top: 1%;
     margin-left: 38%;
     width: 25%;
-    height: 10%;
     border-radius: 5px;
     background-color: black;
     color: white;
 }
 
-    .button-to-submit:hover {
-        border-bottom: 3px solid #65CAFC;
-    }
+.button-to-submit:hover {
+    border-bottom: 3px solid #65CAFC;
+}
 
 .tag-select-label, .tag-select {
     margin-top: 1%;
@@ -103,3 +238,9 @@ form {
 .tag-select-label {
     margin-top: 3%;
 }
+
+.paises{}
+
+.provincias {}
+
+.distrito{}
