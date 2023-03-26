@@ -14,6 +14,10 @@ namespace WebApplication_Proyecto_I.Controllers.NuevaEnfermedad
 {
     public class NuevaEnfermedadController : Controller
     {
+        string correo_enviador = "";
+        string contrasena_correo_enviador = "";
+        string host_enviador = "";
+        int puerto_enviador =587;
 
         [BindProperty]
         public Models.Profesional.asociar_profesional Registro_registro { get; set; }
@@ -134,7 +138,7 @@ namespace WebApplication_Proyecto_I.Controllers.NuevaEnfermedad
             }
             context.Registros_Profesional.Add(Registro_registro);
             context.SaveChanges();
-            Enviar_Email("", "", "smtp.gmail.com", 587, Registro_registro.Correo_Electronico_Profesional, "Registro de datos de Profesional", "Se han guardado exitosamente los datos del profesional:"+ Registro_registro.Identificacion_Profesional);
+            Enviar_Email(correo_enviador, contrasena_correo_enviador, host_enviador, puerto_enviador, Registro_registro.Correo_Electronico_Profesional, "Registro de datos de Profesional", "Se han guardado exitosamente los datos del profesional:"+ Registro_registro.Identificacion_Profesional);
             return RedirectToAction("Index", "NuevaEnfermedad");
         }
     }
