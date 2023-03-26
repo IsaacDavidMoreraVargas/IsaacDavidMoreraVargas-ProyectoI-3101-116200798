@@ -4,26 +4,34 @@
 @{
     Layout = "_Layout_interno";
 }
+
+@model WebApplication_Proyecto_I.Models.Ingreso.asociar_ingreso
+
 <!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="~/css/general.css" />
         <link rel="stylesheet" type="text/css" href="~/css/inicio_sesion.css" />
-        <script type="text/javascript" src="~/js/funciones.js"></script>
+    <!-- <script type="text/javascript" src="~/js/funciones.js"></script>-->
+        <script type="text/javascript" src="~/js/funciones_simples.js"></script>
     </head>
-    <body onload="check_Empty()">
+    <body onload="check_simple()">
         <div class="contenedor-columna">
-            <form method="post" enctype="multipart/form-data" asp-controller="" asp-action="">
+            <form method="post" enctype="multipart/form-data" asp-controller="Ingreso" asp-action="Redireccionar">
                 <div class="contenedor-fila border-padre">
                     <label class="contenedor-titulo color-titulo-padre">Sistema de ingreso</label>
                     <div class="contenedor-datos">
                         <label class="titulo-valor color-padre">Codigo</label>
-                        <input class="input-valor border-hijo" id=""  value="" type="number" onkeyup="check_Empty()"/>
+                    <input runat="server" asp-for="codigo_profesional" class="input-valor border-hijo" id="" value="" type="number" onkeyup="check_simple()" required />
                     </div>
                     <div class="contenedor-datos">
                         <label class="titulo-valor color-padre">Clinica atencion</label>
-                        <select class="tag-select color-select" id="" runat="server"  value="" onchange="check_Empty()">
-                            <option value="">value</option>
+                    <select runat="server" asp-for="clinicaProfesional" class="tag-select color-select" id="" runat="server" value="" onchange="check_simple()" required>
+                                <option value="---">----</option>
+                                <option value="Clinica1">Clinica1</option>
+                                <option value="Clinica2">Clinica2</option>
+                                <option value="Clinica3">Clinica3</option>
+                                <option value="Clinica4">Clinica4</option>
                         </select>
                     </div>
                 </div>

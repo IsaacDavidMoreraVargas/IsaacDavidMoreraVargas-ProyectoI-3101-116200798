@@ -29,6 +29,14 @@
       "PackagePath": "staticwebassets\\js\\funciones.js"
     },
     {
+      "Id": "C:\\Users\\Isaac\\Mi unidad\\SYNC\\UNED\\03101 - PROGRAMACION AVANZADA EN WEB\\Instrumentos\\Proyecto I\\WebApplication-Proyecto-I\\wwwroot\\js\\funciones_simples.js",
+      "PackagePath": "staticwebassets\\js\\funciones_simples.js"
+    },
+    {
+      "Id": "C:\\Users\\Isaac\\Mi unidad\\SYNC\\UNED\\03101 - PROGRAMACION AVANZADA EN WEB\\Instrumentos\\Proyecto I\\WebApplication-Proyecto-I\\wwwroot\\js\\function_obtener_datos.js",
+      "PackagePath": "staticwebassets\\js\\function_obtener_datos.js"
+    },
+    {
       "Id": "C:\\Users\\Isaac\\Mi unidad\\SYNC\\UNED\\03101 - PROGRAMACION AVANZADA EN WEB\\Instrumentos\\Proyecto I\\WebApplication-Proyecto-I\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },

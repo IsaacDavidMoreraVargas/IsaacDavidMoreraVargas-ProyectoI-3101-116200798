@@ -1,611 +1,656 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Registro Nueva Enfermedad";
 }
 @{
-    Layout = "_Layout_interno";
+    Layout = "_Layout_vacio";
 }
+@model WebApplication_Proyecto_I.Models.Profesional.asociar_profesional
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="~/css/general.css" />
     <link rel="stylesheet" type="text/css" href="~/css/dos_columnas.css" />
 </head>
+
 <body onload="primera_vez()">
+    <!--
     <div class="contenedor-flechas"><div class="contenedor-izquierda" onclick="a_la_izquierda()">◀</div><div class="leyenda-flechas">Paso 1 de 3</div> <div class="contenedor-derecha" onclick="a_la_derecha()">▶</div></div>
+    -->
+    <div class="contenedor-flechas"><div class="leyenda-flechas">Paso null de null</div></div>
     
-    <div class="contenedor-columna">
-        <form method="post" enctype="multipart/form-data" asp-controller="" asp-action="">
+    @{
+        switch (@TempData["numero_pantalla"])
+        {
+            case 0:
+            //<script>a_la_derecha()</script>
+            <div class="contenedor-columna">
+                    <input class="contador_record" value="@TempData["contador_de_record"]"/>
+                <form method="post" enctype="multipart/form-data" asp-controller="NuevaEnfermedad" asp-action="Registro_Medio">
 
-            <div class="contenedor-fila border-padre">
-                <label class="contenedor-titulo color-titulo-padre">Datos Profesional</label>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Identificacion Profesional</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="number" onkeyup="check_Empty()" required />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Codigo Profesional</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="number" onkeyup="check_Empty()" required />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Nombre Completo Profesional</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" required />
-                </div>
+                    <div class="contenedor-fila border-padre">
+                        <label class="contenedor-titulo color-titulo-padre">Datos Profesional</label>
+                        <div class="contenedor-datos">
+                            <label class="titulo-valor color-padre">Identificacion Profesional</label>
+                            <input runat="server" asp-for="Identificacion_Profesional" class="input-valor border-hijo" id="" value="" type="number" onkeyup="consulta_Obtener(0); check_Empty()" required />
+                        </div>
+                        <div class="contenedor-datos">
+                            <label class="titulo-valor color-padre">Codigo Profesional</label>
+                            <input runat="server" asp-for="Codigo_Profesional" class="input-valor border-hijo" id="" value="" type="number" onkeyup="consulta_Obtener(0); check_Empty()" required />
+                        </div>
+                        <div class="contenedor-datos">
+                            <label class="titulo-valor color-padre">Nombre Completo Profesional</label>
+                            <input runat="server" asp-for="Nombre_Completo_Profesional" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" required />
+                        </div>
+                    </div>
+
+                    <div class="contenedor-fila border-padre">
+                        <label class="contenedor-titulo color-titulo-padre">Datos Profesional</label>
+                        <div class="contenedor-datos">
+                            <label class="titulo-valor color-padre">Correo Electronico Profesional</label>
+                            <input runat="server" asp-for="Correo_Electronico_Profesional" class="input-valor border-hijo" id="" runat="server" value="" type="email" onkeyup="check_Empty()" required />
+                        </div>
+                        <div class="contenedor-datos">
+                            <label class="titulo-valor color-padre">Pais Residencia Profesional</label>
+                            <select runat="server" asp-for="Pais_Residencia_Profesional" class="tag-select color-select paises" id="" runat="server" value="" onchange="llenar_provincia(0); check_Empty()" required>
+                                <option value="---">---</option>
+                            </select>
+                        </div>
+                        <div class="contenedor-datos">
+                            <label class="titulo-valor color-padre">Estado/Provincia Residencia Profesional</label>
+                            <select runat="server" asp-for="Estado_Provincia_Residencia_Profesional" class="tag-select color-select provincias" id="" value="" onchange="check_Empty()" required>
+                                <option value="---">---</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <input asp-route-id="1" class="button-to-submit" type="submit" value="Registrar" />
+                </form>
             </div>
+                break;
 
-            <div class="contenedor-fila border-padre">
-                <label class="contenedor-titulo color-titulo-padre">Datos Profesional</label>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Correo Electronico Profesional</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="email" onkeyup="check_Empty()" required />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Pais Residencia Profesional</label>
-                    <select class="tag-select color-select paises" id="" runat="server" value="" onchange="check_Empty(); llenar_provincia(0)" required>
-                        <option value="---">---</option>
-                    </select>
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Estado/Provincia Residencia Profesional</label>
-                    <select class="tag-select color-select provincias" id="" runat="server" value="" onchange="check_Empty()" required>
-                        <option value="---">---</option>
-                    </select>
-                </div>
-            </div>
 
-            <input class="button-to-submit" type="submit" value="Registrar" />
-        </form>
-    </div>
+            case 1:
+                <div class="contenedor-columna">
+                    <input disabled class="contador_record" value="@TempData["contador_de_record"]" />
+                    <form method="post" enctype="multipart/form-data" asp-controller="" asp-action="">
 
-    <div class="contenedor-columna">
-        <form method="post" enctype="multipart/form-data" asp-controller="" asp-action="">
+                        <div class="contenedor-fila border-padre">
+                            <label class="contenedor-titulo color-titulo-padre">Datos Clinica</label>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Nombre Clinica</label>
+                                <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" required />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Cedula Juridica Clinica</label>
+                                <input class="input-valor border-hijo" id="" runat="server" value="" type="number" onkeyup="check_Empty()" required />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Telefono Administracion Clinica</label>
+                                <input class="input-valor border-hijo" id="" runat="server" value="" type="number" onkeyup="check_Empty()" required />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Correo Electronico Administracion</label>
+                                <input class="input-valor border-hijo" id="" runat="server" value="" type="email" onkeyup="check_Empty()" required />
+                            </div>
+                        </div>
 
-            <div class="contenedor-fila border-padre">
-                <label class="contenedor-titulo color-titulo-padre">Datos Clinica</label>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Nombre Clinica</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" required />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Cedula Juridica Clinica</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="number" onkeyup="check_Empty()" required />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Telefono Administracion Clinica</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="number" onkeyup="check_Empty()" required />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Correo Electronico Administracion</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="email" onkeyup="check_Empty()" required />
-                </div>
-            </div>
+                        <div class="contenedor-fila border-padre">
+                            <label class="contenedor-titulo color-titulo-padre">Datos Clinica</label>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Pais Clinica</label>
+                                <select class="tag-select color-select paises" id="" runat="server" value="" onchange="check_Empty(); llenar_provincia(1)" required>
+                                    <option value="---">---</option>
+                                </select>
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Estado/Provincia Clinica</label>
+                                <select class="tag-select color-select provincias" id="" runat="server" value="" onchange="check_Empty()" required>
+                                    <option value="---">---</option>
+                                </select>
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Distrito Clinica (Opcional)</label>
+                                <select class="tag-select color-select distrito" id="" runat="server" value="" onchange="check_Empty()">
+                                    <option value="---">---</option>
+                                </select>
+                            </div>
+                        </div>
 
-            <div class="contenedor-fila border-padre">
-                <label class="contenedor-titulo color-titulo-padre">Datos Clinica</label>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Pais Clinica</label>
-                    <select class="tag-select color-select paises" id="" runat="server" value="" onchange="check_Empty(); llenar_provincia(1)" required>
-                        <option value="---">---</option>
-                    </select>
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Estado/Provincia Clinica</label>
-                    <select class="tag-select color-select provincias" id="" runat="server" value="" onchange="check_Empty()" required>
-                        <option value="---">---</option>
-                    </select>
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Distrito Clinica (Opcional)</label>
-                    <select class="tag-select color-select distrito" id="" runat="server" value="" onchange="check_Empty()">
-                        <option value="---">---</option>
-                    </select>
-                </div>
-            </div>
-
-            <input class="button-to-submit" type="submit" value="Registrar" />
-        </form>
-    </div>
-    <div class="contenedor-columna">
-        <form method="post" enctype="multipart/form-data" asp-controller="" asp-action="">
-
-            <div class="contenedor-fila border-padre">
-                <label class="contenedor-titulo color-titulo-padre">Datos Paciente</label>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Identificacion Paciente</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="number" onkeyup="check_Empty()" required />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Nombre Paciente</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" required />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Primer Apellido Paciente</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" required />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Segundo Apellido Paciente</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" required />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Fecha Nacimiento Paciente</label>
-                    <input readonly class="input-date border-hijo" id="" runat="server" value="" type="text" onchange="check_Empty()" required />
-                    <input class="input-date-date border-hijo" id="" runat="server" value="" type="date" onchange="actualizar_fecha(0,'input-date border-hijo','input-date-date border-hijo')" required />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Telefono Contacto Paciente</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="number" onkeyup="check_Empty()" required />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Correo Electronico Paciente</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="email" onkeyup="check_Empty()" required />
-                </div>
-            </div>
-
-            <div class="contenedor-fila border-padre">
-                <label class="contenedor-titulo color-titulo-padre">Datos Paciente</label>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Fecha Registro</label>
-                    <input readonly class="input-date border-hijo" id="" runat="server" value="" type="text" onchange="check_Empty()" required />
-                    <input disabled class="input-date-date border-hijo" id="" runat="server" value="" type="date" onchange="actualizar_fecha(1,'input-date border-hijo','input-date-date border-hijo')" required />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Ocupacion Paciente</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" required />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Pais Paciente</label>
-                    <select class="tag-select color-select paises" id="" runat="server" value="" onchange="check_Empty();  llenar_provincia(2)" required>
-                        <option value="---">---</option>
-                    </select>
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Estado/Provincia Paciente</label>
-                    <select class="tag-select color-select provincias" id="" runat="server" value="" onchange="check_Empty()" required>
-                        <option value="---">---</option>
-                    </select>
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Distrito Paciente (Opcional)</label>
-                    <select class="tag-select color-select distrito" id="" runat="server" value="" onchange="check_Empty()">
-                        <option value="---">---</option>
-                    </select>
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Genero Paciente</label>
-                    <select class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" required>
-                        <option value="---">---</option>
-                    </select>
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Estado Civil Paciente</label>
-                    <select class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" required>
-                        <option value="---">---</option>
-                        <option value="M">M</option>
-                        <option value="F">F</option>
-                    </select>
-                </div>
-            </div>
-
-            <input class="button-to-submit" type="submit" value="Registrar" />
-        </form>
-    </div>
-
-    <div class="contenedor-columna">
-        <form method="post" enctype="multipart/form-data" asp-controller="" asp-action="">
-
-            <div class="contenedor-fila border-padre">
-                <label class="contenedor-titulo color-titulo-padre">Datos Inyecciones</label>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">¿Tiene la vacuna de Sarampión/Rubeola/Parotiditis?</label>
-                    <select class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" required>
-                        <option value="---">---</option>
-                        <option value="0">Si</option>
-                        <option value="1">No</option>
-                    </select>
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">¿Tiene la vacuna del Tétano/Hepatitis A o B/Influenza?</label>
-                    <select class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" required>
-                        <option value="---">---</option>
-                        <option value="0">Si</option>
-                        <option value="1">No</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="contenedor-fila border-padre">
-                <label class="contenedor-titulo color-titulo-padre">Datos Inyecciones</label>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">¿Tiene la vacuna del Covid?</label>
-                    <select class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" required>
-                        <option value="---">---</option>
-                        <option value="0">Si</option>
-                        <option value="1">No</option>
-                    </select>
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">¿Cuántas dosis tiene?</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="number" onkeyup="check_Empty()" />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Razón de no poseer vacuna COVID</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()"/>
-                </div>
-            </div>
-
-            <input class="button-to-submit" type="submit" value="Registrar" />
-        </form>
-    </div>
-
-    <div class="contenedor-columna">
-        <form method="post" enctype="multipart/form-data" asp-controller="" asp-action="">
-
-            <div class="contenedor-fila border-padre">
-                <label class="contenedor-titulo color-titulo-padre">Datos Sintomas</label>
-                <div class="container-leyenda"><label class="leyenda-titulo">Sintomas</label></div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Visita al médico o a la consulta de otro profesional de la salud</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Visita a la sala de emergencias o al centro de atención urgente</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Hospitalización</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Hospitalización prolongada</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Enfermedad que pone en peligro la vida</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Incapacidad o daño permanente</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Paciente fallecido</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Anomalía congénita o defecto de nacimiento</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Aborto espontáneo o nacimiento sin vida</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Ninguna de las anteriores</label>
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">¿Qué síntomas presenta?</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" />
-                </div>
-                <div class="container-leyenda"><label class="leyenda-titulo">¿Alergias conocidas?</label></div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Medicamentos</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Polietilenglicol</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Alimentos</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Medio ambiente</label>
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Otras Alergias</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" />
+                        <input asp-route-id="2" class="button-to-submit" type="submit" value="Registrar" />
+                    </form>
                 </div>
 
-                <div class="container-leyenda"><label class="leyenda-titulo">¿Ha tenido alguno de los siguientes síntomas?</label></div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Síntomas de COVID o Enfermedad de COVID</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Disminución del bienestar</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Disminución del estado de salud</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Fatiga extrema</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Incapacidad para participar en actividades rutinarias</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Pérdida de energía</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Dolor inexplicable</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Debilidad</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Fiebre inexplicable</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Sensaciones corporales inexplicables</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Sudores nocturnos</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Sofocos</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Intolerancia al frío</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Intolerancia al calor</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Sensibilidad a los cambios de temperatura</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Cambio en la capacidad de caminar</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Cambio en el pensamiento</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Ya no me siento como antes</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Aumento de peso inexplicable</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Pérdida de peso inexplicable</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Sueño fragmentado</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">No puedo dormir</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Insomnio</label>
-                </div>
-            </div>
+                break;
 
-            <div class="contenedor-fila border-padre">
-                <label class="contenedor-titulo color-titulo-padre">Datos Sintomas</label>
+            case 2:
+                <div class="contenedor-columna">
+                    <input disabled class="contador_record" value="@TempData["contador_de_record"]" />
+                    <form method="post" enctype="multipart/form-data" asp-controller="" asp-action="">
 
-                <div class="container-leyenda"><label class="leyenda-titulo">Nuevas enfermedades presentadas en un lapso de cinco años o menos</label></div>
+                        <div class="contenedor-fila border-padre">
+                            <label class="contenedor-titulo color-titulo-padre">Datos Paciente</label>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Identificacion Paciente</label>
+                                <input class="input-valor border-hijo" id="" runat="server" value="" type="number" onkeyup="check_Empty()" required />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Nombre Paciente</label>
+                                <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" required />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Primer Apellido Paciente</label>
+                                <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" required />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Segundo Apellido Paciente</label>
+                                <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" required />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Fecha Nacimiento Paciente</label>
+                                <input readonly class="input-date border-hijo" id="" runat="server" value="" type="text" onchange="check_Empty()" required />
+                                <input class="input-date-date border-hijo" id="" runat="server" value="" type="date" onchange="actualizar_fecha(0,'input-date border-hijo','input-date-date border-hijo')" required />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Telefono Contacto Paciente</label>
+                                <input class="input-valor border-hijo" id="" runat="server" value="" type="number" onkeyup="check_Empty()" required />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Correo Electronico Paciente</label>
+                                <input class="input-valor border-hijo" id="" runat="server" value="" type="email" onkeyup="check_Empty()" required />
+                            </div>
+                        </div>
 
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Enfermedad de Addison</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Alergias</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Arritmias</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Fibrilación auricular</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Vasculitis autoinmune</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Parálisis de Bell (parálisis facial)</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Bronquitis</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Cáncer</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Enfermedad celíaca (intolerancia al gluten)</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Enfermedad renal crónica</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Insuficiencia cardíaca congestiva</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Enfermedad de Crohn</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">TVP (coágulos de sangre)</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Diabetes</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Encefalitis (inflamación cerebral/dolores de cabeza)</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Epilepsia (convulsiones)</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Enfermedades del corazón</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Herpes tipo 1</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Herpes tipo 2</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">VIH</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Hipertensión (presión arterial alta)</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Enfermedad inflamatoria intestinal</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Enfermedad renal aguda</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Enfermedad hepática</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Lupus</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Aborto espontáneo</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Esclerosis múltiple</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Miastenia gravis</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Infarto de miocardio (ataque al corazón)</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Miocarditis</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Osteoartritis</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Pericarditis</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Anemia perniciosa</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Neumonía</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Parto prematuro</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Psoriasis</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Artritis psoriásica</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Embolia pulmonar</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Artritis reumatoide</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Herpes zóster</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Síndrome de Sjogren</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Nacimiento sin vida</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Accidente cerebrovascular</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Ataques isquémicos transitorios (AIT)</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Trastorno de la tiroides</label>
-                </div>
-                <div class="contenedor-datos">
-                    <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
-                    <label class="titulo-checkbox-valor color-padre">Colitis ulcerosa</label>
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">Otros Sintomas</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" />
-                </div>
-                <div class="contenedor-datos">
-                    <label class="titulo-valor color-padre">¿Si ha desarrollado un nuevo cáncer o la reaparición de un cáncer existente,especifique el tipo de cáncer?</label>
-                    <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" />
-                </div>
-            </div>
+                        <div class="contenedor-fila border-padre">
+                            <label class="contenedor-titulo color-titulo-padre">Datos Paciente</label>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Fecha Registro</label>
+                                <input readonly class="input-date border-hijo" id="" runat="server" value="" type="text" onchange="check_Empty()" required />
+                                <input disabled class="input-date-date border-hijo" id="" runat="server" value="" type="date" onchange="actualizar_fecha(1,'input-date border-hijo','input-date-date border-hijo')" required />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Ocupacion Paciente</label>
+                                <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" required />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Pais Paciente</label>
+                                <select class="tag-select color-select paises" id="" runat="server" value="" onchange="check_Empty();  llenar_provincia(2)" required>
+                                    <option value="---">---</option>
+                                </select>
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Estado/Provincia Paciente</label>
+                                <select class="tag-select color-select provincias" id="" runat="server" value="" onchange="check_Empty()" required>
+                                    <option value="---">---</option>
+                                </select>
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Distrito Paciente (Opcional)</label>
+                                <select class="tag-select color-select distrito" id="" runat="server" value="" onchange="check_Empty()">
+                                    <option value="---">---</option>
+                                </select>
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Genero Paciente</label>
+                                <select class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" required>
+                                    <option value="---">---</option>
+                                    <option value="M">M</option>
+                                    <option value="F">F</option>
+                                </select>
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Estado Civil Paciente</label>
+                                <select class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" required>
+                                    <option value="---">---</option>
+                                    <option value="0">Soltero</option>
+                                    <option value="1">Casado</option>
+                                    <option value="2">Union Libre</option>
+                                    <option value="3">Viudo</option>
+                                </select>
+                            </div>
+                        </div>
 
-           
+                        <input asp-route-id="3" class="button-to-submit" type="submit" value="Registrar" />
+                    </form>
+                </div>
 
-            <input class="button-to-submit" type="submit" value="Registrar" />
-        </form>
-    </div>
+                break;
+
+            case 3:
+                <div class="contenedor-columna">
+                    <input disabled class="contador_record" value="@TempData["contador_de_record"]" />
+                    <form method="post" enctype="multipart/form-data" asp-controller="" asp-action="">
+                        <div class="contenedor-fila border-padre">
+                            <label class="contenedor-titulo color-titulo-padre">Datos Inyecciones</label>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">¿Tiene la vacuna de Sarampión/Rubeola/Parotiditis?</label>
+                                <select class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" required>
+                                    <option value="---">---</option>
+                                    <option value="0">Si</option>
+                                    <option value="1">No</option>
+                                </select>
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">¿Tiene la vacuna del Tétano/Hepatitis A o B/Influenza?</label>
+                                <select class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" required>
+                                    <option value="---">---</option>
+                                    <option value="0">Si</option>
+                                    <option value="1">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="contenedor-fila border-padre">
+                            <label class="contenedor-titulo color-titulo-padre">Datos Inyecciones</label>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">¿Tiene la vacuna del Covid?</label>
+                                <select class="tag-select color-select" id="" runat="server" value="" onchange="cambiar_requerido(this); check_Empty()" required>
+                                    <option value="---">---</option>
+                                    <option value="0">Si</option>
+                                    <option value="1">No</option>
+                                </select>
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">¿Cuántas dosis tiene?</label>
+                                <input class="input-valor border-hijo si" id="" runat="server" value="" type="number" onkeyup="check_Empty()" />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Razón de no poseer vacuna COVID</label>
+                                <input class="input-valor border-hijo no" id="" runat="server" value="" type="text" onkeyup="check_Empty()" />
+                            </div>
+                        </div>
+
+                        <input asp-route-id="4" class="button-to-submit" type="submit" value="Registrar" />
+                    </form>
+                </div>
+
+                break;
+
+            case 4:
+                <div class="contenedor-columna">
+                    <input disabled class="contador_record" value=@TempData["contador_de_record"] />
+                    <form method="post" enctype="multipart/form-data" asp-controller="" asp-action="">
+
+                        <div class="contenedor-fila border-padre">
+                            <label class="contenedor-titulo color-titulo-padre">Datos Sintomas</label>
+                            <div class="container-leyenda"><label class="leyenda-titulo">Sintomas</label></div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Visita al médico o a la consulta de otro profesional de la salud</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Visita a la sala de emergencias o al centro de atención urgente</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Hospitalización</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Hospitalización prolongada</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Enfermedad que pone en peligro la vida</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Incapacidad o daño permanente</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Paciente fallecido</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Anomalía congénita o defecto de nacimiento</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Aborto espontáneo o nacimiento sin vida</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Ninguna de las anteriores</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">¿Qué síntomas presenta?</label>
+                                <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" />
+                            </div>
+                            <div class="container-leyenda"><label class="leyenda-titulo">¿Alergias conocidas?</label></div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Medicamentos</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Polietilenglicol</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Alimentos</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Medio ambiente</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Otras Alergias</label>
+                                <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" />
+                            </div>
+
+                            <div class="container-leyenda"><label class="leyenda-titulo">¿Ha tenido alguno de los siguientes síntomas?</label></div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Síntomas de COVID o Enfermedad de COVID</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Disminución del bienestar</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Disminución del estado de salud</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Fatiga extrema</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Incapacidad para participar en actividades rutinarias</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Pérdida de energía</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Dolor inexplicable</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Debilidad</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Fiebre inexplicable</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Sensaciones corporales inexplicables</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Sudores nocturnos</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Sofocos</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Intolerancia al frío</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Intolerancia al calor</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Sensibilidad a los cambios de temperatura</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Cambio en la capacidad de caminar</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Cambio en el pensamiento</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Ya no me siento como antes</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Aumento de peso inexplicable</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Pérdida de peso inexplicable</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Sueño fragmentado</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">No puedo dormir</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Insomnio</label>
+                            </div>
+                        </div>
+
+                        <div class="contenedor-fila border-padre">
+                            <label class="contenedor-titulo color-titulo-padre">Datos Sintomas</label>
+
+                            <div class="container-leyenda"><label class="leyenda-titulo">Nuevas enfermedades presentadas en un lapso de cinco años o menos</label></div>
+
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Enfermedad de Addison</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Alergias</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Arritmias</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Fibrilación auricular</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Vasculitis autoinmune</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Parálisis de Bell (parálisis facial)</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Bronquitis</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Cáncer</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Enfermedad celíaca (intolerancia al gluten)</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Enfermedad renal crónica</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Insuficiencia cardíaca congestiva</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Enfermedad de Crohn</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">TVP (coágulos de sangre)</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Diabetes</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Encefalitis (inflamación cerebral/dolores de cabeza)</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Epilepsia (convulsiones)</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Enfermedades del corazón</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Herpes tipo 1</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Herpes tipo 2</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">VIH</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Hipertensión (presión arterial alta)</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Enfermedad inflamatoria intestinal</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Enfermedad renal aguda</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Enfermedad hepática</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Lupus</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Aborto espontáneo</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Esclerosis múltiple</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Miastenia gravis</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Infarto de miocardio (ataque al corazón)</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Miocarditis</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Osteoartritis</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Pericarditis</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Anemia perniciosa</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Neumonía</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Parto prematuro</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Psoriasis</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Artritis psoriásica</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Embolia pulmonar</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Artritis reumatoide</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Herpes zóster</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Síndrome de Sjogren</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Nacimiento sin vida</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Accidente cerebrovascular</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Ataques isquémicos transitorios (AIT)</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Trastorno de la tiroides</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <input class="checkbox-valor border-hijo" id="" runat="server" value="" type="checkbox" onclick="check_Empty()" />
+                                <label class="titulo-checkbox-valor color-padre">Colitis ulcerosa</label>
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Otros Sintomas</label>
+                                <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">¿Si ha desarrollado un nuevo cáncer o la reaparición de un cáncer existente,especifique el tipo de cáncer?</label>
+                                <input class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" />
+                            </div>
+                        </div>
+
+
+
+                        <input  asp-route-id="" class="button-to-submit" type="submit" value="Registrar" />
+                    </form>
+                </div>
+
+                break;
+
+            default: break;
+        }
+    }
+    
+
+    
+   
+
+    
+
+    
 </body>
 </html>

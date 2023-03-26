@@ -30,6 +30,10 @@ main {
     height: 100%;
     margin-top: 0%;
 }
+.contador_record 
+{
+    display:none;
+}
 .contenedor-flechas {
     margin-top: 1%;
     width: 99%;
@@ -87,12 +91,13 @@ main {
 }
 
 .leyenda-flechas {
+    border: 1px solid black;
+    border-top: 3px solid #0ff04f;
     margin-left: 1%;
-    width: 75%;
+    width: 98%;
     height: 100%;
     text-align: center;
     background-color: black;
-    border: 1px solid black;
     color: white;
 }
     
@@ -243,4 +248,8 @@ form {
 
 .provincias {}
 
-.distrito{}
+.distrito {}
+
+.si {}
+
+.no {}
