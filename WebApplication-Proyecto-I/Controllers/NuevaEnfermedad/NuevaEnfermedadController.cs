@@ -9,6 +9,8 @@ using WebApplication_Proyecto_I.Controllers.Profesional;
 using WebApplication_Proyecto_I.Models.Profesional;
 using System.Reflection;
 using System.Xml.Linq;
+using WebApplication_Proyecto_I.Controllers.Clinica;
+using System.Drawing;
 
 namespace WebApplication_Proyecto_I.Controllers.NuevaEnfermedad
 {
@@ -20,9 +22,9 @@ namespace WebApplication_Proyecto_I.Controllers.NuevaEnfermedad
         int puerto_enviador =587;
 
         [BindProperty]
-        public Models.Profesional.asociar_profesional Registro_registro { get; set; }
-        DatosProfesional_Context context = new DatosProfesional_Context();
-
+        public Controllers.Referencia_Interna_Modelos Registro_registro { get; set; }
+        DatosProfesional_Context context_profesional = new DatosProfesional_Context();
+        Clinica_Context context_clinica = new Clinica_Context();
         public IActionResult Index(int id)
         {
             //Console.WriteLine("->"+id);
@@ -56,12 +58,13 @@ namespace WebApplication_Proyecto_I.Controllers.NuevaEnfermedad
             return View();
         }
 
-        public string ConsultaInmediata(int menu, int id, int codigo)
+        public string ConsultaInmediataProfesional(int menu, int id, int codigo)
         {
-            Models.Profesional.asociar_profesional esqueleto = new Models.Profesional.asociar_profesional();
-            var resultados = context.Registros_Profesional.ToList();
             var string_retorno = "null";
-            if (resultados !=null)
+            Models.Profesional.asociar_profesional esqueleto = new Models.Profesional.asociar_profesional();
+            var resultados = context_profesional.Registros_Profesional.ToList();
+
+            if (resultados != null)
             {
                 bool encontrado = false;
 
@@ -74,18 +77,62 @@ namespace WebApplication_Proyecto_I.Controllers.NuevaEnfermedad
                         break;
                     }
                 }
-                //Console.WriteLine("1->:"+encontrado + " " + esqueleto.Identificacion_Profesional + "-" + esqueleto.Nombre_Completo_Profesional);
+                        
                 if (encontrado == true)
                 {
-                    string_retorno = "{"+
-                        "'Identificacion_Profesional':'"+ esqueleto.Identificacion_Profesional + "',"+
-                        "'Codigo_Profesional':'"+ esqueleto.Codigo_Profesional + "'," +
+                    //Console.WriteLine("1->:" + encontrado + " " + esqueleto.Identificacion_Profesional + "-" + esqueleto.Nombre_Completo_Profesional);
+                    string_retorno = "{" +
+                        "'Identificacion_Profesional':'" + esqueleto.Identificacion_Profesional + "'," +
+                        "'Codigo_Profesional':'" + esqueleto.Codigo_Profesional + "'," +
                         "'Nombre_Completo_Profesional':'" + esqueleto.Nombre_Completo_Profesional + "'," +
                         "'Correo_Electronico_Profesional':'" + esqueleto.Correo_Electronico_Profesional + "'," +
                         "'Pais_Residencia_Profesional':'" + esqueleto.Pais_Residencia_Profesional + "'," +
-                        "'Estado_Provincia_Residencia_Profesional':'" + esqueleto.Estado_Provincia_Residencia_Profesional + "'"+
+                        "'Estado_Provincia_Residencia_Profesional':'" + esqueleto.Estado_Provincia_Residencia_Profesional + "'" +
                         "}";
-                    string_retorno = string_retorno.Replace("'","?");
+                    string_retorno = string_retorno.Replace("'", "?");
+                    string_retorno = string_retorno.Replace('?', '"');
+                }
+            }
+            return (string_retorno);
+        }
+        public string ConsultaInmediataClinica(int menu, int id, string nombre){
+
+            //Console.WriteLine("1->:" + menu + "|" + id + "|"+ nombre + "|");
+
+            var string_retorno = "null";
+            Models.Clinica.asociar_clinica esqueleto = new Models.Clinica.asociar_clinica();
+            var resultados = context_clinica.Registros_Clinica.ToList();
+
+            if (resultados != null)
+            {
+                bool encontrado = false;
+
+                foreach (Models.Clinica.asociar_clinica valor in resultados)
+                {
+                    //Console.WriteLine("1->:" + valor.Cedula_Juridica_Clinica +"|"+id+"|" + valor.Nombre_Clinica+"|"+ nombre+"|");
+                    if (valor.Cedula_Juridica_Clinica == id && valor.Nombre_Clinica == nombre)
+                    {
+                        encontrado = true;
+                        esqueleto = valor;
+                        break;
+                    }
+                }
+
+                if (encontrado == true)
+                {
+                    //Console.WriteLine("1->:" + encontrado + " " + esqueleto.Cedula_Juridica_Clinica + "-" + esqueleto.Nombre_Clinica);
+                            
+                    string_retorno = "{" +
+                        "'Cedula_Juridica_Clinica':'" + esqueleto.Cedula_Juridica_Clinica + "'," +
+                        "'Nombre_Clinica':'" + esqueleto.Nombre_Clinica+ "'," +
+                        "'Telefono_Administracion_Clinica':'" + esqueleto.Telefono_Administracion_Clinica + "'," +
+                        "'Correo_Electronico_Administracion':'" + esqueleto.Correo_Electronico_Administracion + "'," +
+                        "'Pais_Clinica':'" + esqueleto.Pais_Clinica + "'," +
+                        "'Estado_Provincia_Clinica':'" + esqueleto.Estado_Provincia_Clinica + "'," +
+                        "'Distrito_Clinica':'" + esqueleto.Distrito_Clinica+ "'" +
+                        "}";
+                            
+                    string_retorno = string_retorno.Replace("'", "?");
                     string_retorno = string_retorno.Replace('?', '"');
                 }
             }
@@ -128,18 +175,47 @@ namespace WebApplication_Proyecto_I.Controllers.NuevaEnfermedad
                      Console.WriteLine("Error enviando email: "+e);
                 }
         }
-        public IActionResult Registro_Medio()
+        public IActionResult Registro_Medio(int id)
         {
-            var resultados = context.Registros_Profesional.Find(Registro_registro.Identificacion_Profesional);
-            if (resultados != null)
+            switch (id)
             {
-                context.Registros_Profesional.Remove(resultados);
-                context.SaveChanges();
+                case 1:
+                    try
+                    {
+                        var resultados = context_profesional.Registros_Profesional.Find(Registro_registro.registro_profesional.Identificacion_Profesional);
+                        if (resultados != null)
+                        {
+                            context_profesional.Registros_Profesional.Remove(resultados);
+                            context_profesional.SaveChanges();
+                        }
+                        context_profesional.Registros_Profesional.Add(Registro_registro.registro_profesional);
+                        context_profesional.SaveChanges();
+                        Enviar_Email(correo_enviador, contrasena_correo_enviador, host_enviador, puerto_enviador, Registro_registro.registro_profesional.Correo_Electronico_Profesional, "Registro de datos de Profesional", "Se han guardado exitosamente los datos del profesional:" + Registro_registro.registro_profesional.Identificacion_Profesional);
+
+                    }catch (Exception e) { Console.WriteLine("Exception: " + e); id = 0; }
+                    break;
+
+                case 2:
+                    try
+                    {
+                        var resultados = context_clinica.Registros_Clinica.Find(Registro_registro.registro_clinica.Cedula_Juridica_Clinica);
+                        if (resultados != null)
+                        {
+                            context_clinica.Registros_Clinica.Remove(resultados);
+                            context_clinica.SaveChanges();
+                        }
+                        context_clinica.Registros_Clinica.Add(Registro_registro.registro_clinica);
+                        context_clinica.SaveChanges();
+                        Enviar_Email(correo_enviador, contrasena_correo_enviador, host_enviador, puerto_enviador, Registro_registro.registro_clinica.Correo_Electronico_Administracion, "Registro de datos de Clinica", "Se han guardado exitosamente los datos de la clinica:" + Registro_registro.registro_clinica.Cedula_Juridica_Clinica);
+
+                    }
+                    catch (Exception e) { Console.WriteLine("Exception: " + e); id = 1; }
+
+                    break;
             }
-            context.Registros_Profesional.Add(Registro_registro);
-            context.SaveChanges();
-            Enviar_Email(correo_enviador, contrasena_correo_enviador, host_enviador, puerto_enviador, Registro_registro.Correo_Electronico_Profesional, "Registro de datos de Profesional", "Se han guardado exitosamente los datos del profesional:"+ Registro_registro.Identificacion_Profesional);
-            return RedirectToAction("Index", "NuevaEnfermedad");
+
+            return RedirectToAction("Index", new { id = id });
+            
         }
     }
 }
