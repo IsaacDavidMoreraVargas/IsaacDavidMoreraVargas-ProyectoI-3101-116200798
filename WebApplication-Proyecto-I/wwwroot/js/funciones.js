@@ -111,10 +111,12 @@ function color_border(array, colorSi, colorNo) {
                     if (array_input[flag2].type == "checkbox")
                     {
                         if (array_input[flag2].checked) {
+                            array_input[flag2].value = "true";
                             //array_input[flag2].style.outline = "1px solid transparent";
-                            problema = true;
+                            //problema = true;
                         } else
                         {
+                            array_input[flag2].value = "false";
                             //array_input[flag2].style.outline = colorSi;
                         }
                     } else if (array_input[flag2].type == "email")

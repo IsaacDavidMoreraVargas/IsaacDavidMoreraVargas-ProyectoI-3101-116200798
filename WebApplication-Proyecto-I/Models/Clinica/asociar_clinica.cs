@@ -11,7 +11,7 @@ namespace WebApplication_Proyecto_I.Models.Clinica
 
         public int? Telefono_Administracion_Clinica { get; set; }
 
-        public string? Correo_Electronico_Administracion { get; set; }
+        public string Correo_Electronico_Administracion { get; set; }
 
         public string? Pais_Clinica { get; set; }
 
