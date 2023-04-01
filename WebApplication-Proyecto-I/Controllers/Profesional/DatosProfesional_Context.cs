@@ -11,7 +11,7 @@ namespace WebApplication_Proyecto_I.Controllers.Profesional
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-RVLLMUB;Database=TareaII;Trusted_Connection=True;Encrypt=false;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-RVLLMUB;Database=ProyectoI;Trusted_Connection=True;Encrypt=false;");
             }
         }
 
@@ -19,10 +19,12 @@ namespace WebApplication_Proyecto_I.Controllers.Profesional
         {
             modelBuilder.Entity<WebApplication_Proyecto_I.Models.Profesional.asociar_profesional>(entity =>
             {
-                entity.ToTable("");
-                entity.Property(e => e.fechaRegistro)
+                entity.ToTable("datosProfesional");
+                
+                entity.Property(e => e.Nombre_Completo_Profesional)
                     .HasMaxLength(300)
                     .IsUnicode(false);
+                
             });
             OnModelCreatingPartial(modelBuilder);
         }

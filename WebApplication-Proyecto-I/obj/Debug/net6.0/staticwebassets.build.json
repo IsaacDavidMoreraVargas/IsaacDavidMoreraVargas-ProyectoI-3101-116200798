@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GgrTmW+iMVW8a1Z9QQSyyvPt3Aezv7vd/FaVR4mSBFM=",
+  "Hash": "NYPpEqATScaUf86ihju25uplUENSG7Gp14lcJtUlLIk=",
   "Source": "WebApplication-Proyecto-I",
   "BasePath": "_content/WebApplication-Proyecto-I",
   "Mode": "Default",
@@ -151,6 +151,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\funciones.js"
+    },
+    {
+      "Identity": "C:\\Users\\Isaac\\Mi unidad\\SYNC\\UNED\\03101 - PROGRAMACION AVANZADA EN WEB\\Instrumentos\\Proyecto I\\WebApplication-Proyecto-I\\wwwroot\\js\\funciones_simples.js",
+      "SourceId": "WebApplication-Proyecto-I",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Isaac\\Mi unidad\\SYNC\\UNED\\03101 - PROGRAMACION AVANZADA EN WEB\\Instrumentos\\Proyecto I\\WebApplication-Proyecto-I\\wwwroot\\",
+      "BasePath": "_content/WebApplication-Proyecto-I",
+      "RelativePath": "js/funciones_simples.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\funciones_simples.js"
+    },
+    {
+      "Identity": "C:\\Users\\Isaac\\Mi unidad\\SYNC\\UNED\\03101 - PROGRAMACION AVANZADA EN WEB\\Instrumentos\\Proyecto I\\WebApplication-Proyecto-I\\wwwroot\\js\\function_obtener_datos.js",
+      "SourceId": "WebApplication-Proyecto-I",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Isaac\\Mi unidad\\SYNC\\UNED\\03101 - PROGRAMACION AVANZADA EN WEB\\Instrumentos\\Proyecto I\\WebApplication-Proyecto-I\\wwwroot\\",
+      "BasePath": "_content/WebApplication-Proyecto-I",
+      "RelativePath": "js/function_obtener_datos.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\function_obtener_datos.js"
     },
     {
       "Identity": "C:\\Users\\Isaac\\Mi unidad\\SYNC\\UNED\\03101 - PROGRAMACION AVANZADA EN WEB\\Instrumentos\\Proyecto I\\WebApplication-Proyecto-I\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

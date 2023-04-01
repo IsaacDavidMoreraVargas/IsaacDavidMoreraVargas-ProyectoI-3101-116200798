@@ -30,6 +30,10 @@ main {
     height: 100%;
     margin-top: 0%;
 }
+.contador_record, .contador_codigo {
+    display: none;
+}
+
 .contenedor-flechas {
     margin-top: 1%;
     width: 99%;
@@ -42,7 +46,6 @@ main {
 
 .contenedor-izquierda, .contenedor-derecha {
     width: 10%;
-    height: 100%;
     background-color: #65CAFC;
     border: 1px solid #65CAFC;
 }
@@ -87,12 +90,13 @@ main {
 }
 
 .leyenda-flechas {
+    border: 1px solid black;
+    border-top: 3px solid #0ff04f;
     margin-left: 1%;
-    width: 75%;
+    width: 98%;
     height: 100%;
     text-align: center;
     background-color: black;
-    border: 1px solid black;
     color: white;
 }
     
@@ -243,4 +247,10 @@ form {
 
 .provincias {}
 
-.distrito{}
+.distrito {}
+
+.si {}
+
+.no {}
+
+.Web {}
