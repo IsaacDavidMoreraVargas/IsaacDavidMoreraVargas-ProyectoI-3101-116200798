@@ -19,7 +19,24 @@ function primera_vez()
     try { } catch (e) { }
     
     actualizar_leyenda()
+    cambiar_tamano()
 }
+
+function cambiar_tamano()
+{
+    let flecha = document.getElementsByClassName("contenedor-derecha")[0];
+    flecha.style.display = "none";
+
+    let leyenda = document.getElementsByClassName("leyenda-flechas")[0];
+    leyenda.style.width = "98%";
+    if (leyenda.textContent.includes("Paso 2"))
+    {
+        leyenda.style.width = "87%";
+        flecha.style.display = "block";
+        // width: 98%;
+    }
+}
+
 function apagar_varios()
 {
     let elemento1 = document.getElementsByClassName("input-valor border-hijo si")[0];
@@ -167,6 +184,11 @@ function color_border(array, colorSi, colorNo) {
        
     }
 
+    respuesta =checkear_si_pagina_esta_online()
+    if (respuesta == false) {
+        problema = true;
+    }
+
     let element = document.getElementsByClassName("button-to-submit")[flag_columna];
     if (element != null)
     {
@@ -264,6 +286,12 @@ function a_la_derecha()
     //alert("here2" + flag_columna);
 }
 
+function a_la_derecha2()
+{
+    let url = "/NuevaEnfermedad/?id=2&codigounico=" + document.getElementsByClassName("contador_codigo")[0].value;
+    window.open(url, "_self");
+}
+
 function esconder_flecha(derecha, izquierda)
 {
     
@@ -308,6 +336,26 @@ function validarEmail(valor)
     } else {
         return false;
     }
+}
+
+function checkear_si_pagina_esta_online()
+{
+    //let correcto = false;
+    let elemento = document.getElementsByClassName("input-valor border-hijo Web")[0];
+    if (elemento != null)
+    {
+        var valido = /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?\/?$/gm;
+        if (valido.test(elemento.value)) {
+            elemento.style.border = colorSi;
+            return true;
+        }
+        else {
+            elemento.style.border = colorNo;
+            return false;
+        }
+    }
+    
+    
 }
 
 function actualizar_fecha(numero, meta, origen)

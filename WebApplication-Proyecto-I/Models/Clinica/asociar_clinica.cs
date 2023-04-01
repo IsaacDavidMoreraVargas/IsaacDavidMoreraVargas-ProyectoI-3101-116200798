@@ -18,5 +18,7 @@ namespace WebApplication_Proyecto_I.Models.Clinica
         public string? Estado_Provincia_Clinica { get; set; }
 
         public string? Distrito_Clinica { get; set; }
+
+        public string? Sitio_Web { get; set; }
     }
 }

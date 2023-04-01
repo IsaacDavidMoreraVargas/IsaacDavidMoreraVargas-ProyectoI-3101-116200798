@@ -1,11 +1,14 @@
-﻿function consulta_Obtener(number_menu)
+﻿var color_error = "1px solid #F5524C";
+var color_correcto = "1px solid black";
+
+function consulta_Obtener(number_menu)
 {
     let array_elementos = document.getElementsByClassName("input-valor border-hijo");
     switch (number_menu)
     {
         case 0:
 
-            var url = "/NuevaEnfermedad/ConsultaInmediataProfesional/" + "?menu=" + number_menu + "&id=" + array_elementos[0].value + "&codigo=" + array_elementos[1].value;
+            var url = "/NuevaEnfermedad/ConsultaInmediataProfesional/" + "?menu=" + number_menu + "&id=" + array_elementos[0].value + "&codigo=" + array_elementos[1].value + "&codigounico=" + document.getElementsByClassName("contador_codigo")[0].value;
             //alert(url);
             var request = new XMLHttpRequest();
             request.responseType = 'text';
@@ -30,6 +33,7 @@
                         array_elementos[1].value = convertido.Codigo_Profesional;
                         array_elementos[2].value = convertido.Nombre_Completo_Profesional;
                         array_elementos[3].value = convertido.Correo_Electronico_Profesional;
+                        document.getElementsByTagName("form")[0].action ="/NuevaEnfermedad/Registro_Medio/1?codigounico="+convertido.Numero_Registro_Unico;
                         array_elementos = columna_encontrada.getElementsByClassName("tag-select color-select paises");
                         array_elementos[0].value = convertido.Pais_Residencia_Profesional;
                         //array_elementos = columna_encontrada.getElementsByClassName("tag-select color-select provincias");
@@ -46,7 +50,7 @@
 
         case 1:
 
-            var url = "/NuevaEnfermedad/ConsultaInmediataClinica/" + "?menu=" + number_menu + "&id=" + array_elementos[0].value + "&nombre=" + array_elementos[1].value;
+            var url = "/NuevaEnfermedad/ConsultaInmediataClinica/" + "?menu=" + number_menu + "&id=" + array_elementos[0].value + "&nombre=" + array_elementos[1].value + "&codigounico=" + document.getElementsByClassName("contador_codigo")[0].value;
             //alert(url);
             var request = new XMLHttpRequest();
             request.responseType = 'text';
@@ -69,6 +73,7 @@
                         array_elementos[1].value = convertido.Nombre_Clinica;
                         array_elementos[2].value = convertido.Telefono_Administracion_Clinica;
                         array_elementos[3].value = convertido.Correo_Electronico_Administracion;
+                        array_elementos[4].value = convertido.Sitio_Web;
                         array_elementos = columna_encontrada.getElementsByClassName("tag-select color-select paises");
                         array_elementos[0].value = convertido.Pais_Clinica;
                         document.getElementsByClassName("tag-select color-select distrito")[0].value = convertido.Distrito_Clinica;
@@ -86,7 +91,7 @@
 
         case 2:
 
-            var url = "/NuevaEnfermedad/ConsultaInmediataPaciente/" + "?menu=" + number_menu + "&id=" + array_elementos[0].value;
+            var url = "/NuevaEnfermedad/ConsultaInmediataPaciente/" + "?menu=" + number_menu + "&id=" + array_elementos[0].value + "&codigounico=" + document.getElementsByClassName("contador_codigo")[0].value;
             //alert(url);
             var request = new XMLHttpRequest();
             request.responseType = 'text';
@@ -144,4 +149,17 @@
             break;
     }
     
+}
+
+function checkear_si_pagina_esta_online()
+{
+    /*
+    let elemento = document.getElementsByClassName("input-valor border-hijo Web")[0];
+    var valido = /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?\/?$/gm;
+    if (valido.test(elemento.value)) {
+        elemento.style.border = color_correcto;
+    } else {
+        elemento.style.border = color_error;
+    }
+    */
 }

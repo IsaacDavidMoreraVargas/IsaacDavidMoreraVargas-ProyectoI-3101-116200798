@@ -16,63 +16,63 @@
     <!--
     <div class="contenedor-flechas"><div class="contenedor-izquierda" onclick="a_la_izquierda()">◀</div><div class="leyenda-flechas">Paso 1 de 3</div> <div class="contenedor-derecha" onclick="a_la_derecha()">▶</div></div>
     -->
-    <div class="contenedor-flechas"><div class="leyenda-flechas">Paso null de null</div></div>
+    <div class="contenedor-flechas"><div class="leyenda-flechas">Paso null de null</div><div class="contenedor-derecha" onclick="a_la_derecha2()">Saltar ▶</div></div>
     
     @{
         switch (@TempData["numero_pantalla"])
         {
             case 0:
-            //<script>a_la_derecha()</script>
-            <div class="contenedor-columna">
-                <input class="contador_record" value="@TempData["contador_de_record"]"/>
-                    <form method="post" enctype="multipart/form-data" asp-controller="NuevaEnfermedad" asp-action="Registro_Medio" asp-route-id="1">
-                    <div class="contenedor-fila border-padre">
-                        <label class="contenedor-titulo color-titulo-padre">Datos Profesional</label>
-                        <div class="contenedor-datos">
-                            <label class="titulo-valor color-padre">Identificacion Profesional</label>
-                                <input runat="server" asp-for="registro_profesional.Identificacion_Profesional" class="input-valor border-hijo" id="" value="" type="number" onkeyup="consulta_Obtener(0); check_Empty()" required />
+            <!--profesional-->
+                <div class="contenedor-columna">
+                    <input class="contador_record" value="@TempData["contador_de_record"]"/>
+                    <input class="contador_codigo" value="@TempData["Codigo_Unico"]" />
+                    <form method="post" enctype="multipart/form-data" asp-controller="NuevaEnfermedad" asp-action="Registro_Medio" asp-route-id="1" asp-route-codigounico="@TempData["Codigo_Unico"]">
+                        <div class="contenedor-fila border-padre">
+                            <label class="contenedor-titulo color-titulo-padre">Datos Profesional</label>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Identificacion Profesional</label>
+                                    <input runat="server" asp-for="registro_profesional.Identificacion_Profesional" class="input-valor border-hijo" id="" value="" type="number" onkeyup="consulta_Obtener(0); check_Empty()" required />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Codigo Profesional</label>
+                                    <input runat="server" asp-for="registro_profesional.Codigo_Profesional" class="input-valor border-hijo" id="" value="" type="number" onkeyup="consulta_Obtener(0); check_Empty()" required />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Nombre Completo Profesional</label>
+                                    <input runat="server" asp-for="registro_profesional.Nombre_Completo_Profesional" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" required />
+                            </div>
                         </div>
-                        <div class="contenedor-datos">
-                            <label class="titulo-valor color-padre">Codigo Profesional</label>
-                                <input runat="server" asp-for="registro_profesional.Codigo_Profesional" class="input-valor border-hijo" id="" value="" type="number" onkeyup="consulta_Obtener(0); check_Empty()" required />
-                        </div>
-                        <div class="contenedor-datos">
-                            <label class="titulo-valor color-padre">Nombre Completo Profesional</label>
-                                <input runat="server" asp-for="registro_profesional.Nombre_Completo_Profesional" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" required />
-                        </div>
-                    </div>
 
-                    <div class="contenedor-fila border-padre">
-                        <label class="contenedor-titulo color-titulo-padre">Datos Profesional</label>
-                        <div class="contenedor-datos">
-                            <label class="titulo-valor color-padre">Correo Electronico Profesional</label>
-                                <input runat="server" asp-for="registro_profesional.Correo_Electronico_Profesional" class="input-valor border-hijo" id="" runat="server" value="" type="email" onkeyup="check_Empty()" required />
+                        <div class="contenedor-fila border-padre">
+                            <label class="contenedor-titulo color-titulo-padre">Datos Profesional</label>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Correo Electronico Profesional</label>
+                                    <input runat="server" asp-for="registro_profesional.Correo_Electronico_Profesional" class="input-valor border-hijo" id="" runat="server" value="" type="email" onkeyup="check_Empty()" required />
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Pais Residencia Profesional</label>
+                                <select runat="server" asp-for="registro_profesional.Pais_Residencia_Profesional" class="tag-select color-select paises" id="" runat="server" value="" onchange="llenar_provincia(0); check_Empty()" required>
+                                    <option value="---">---</option>
+                                </select>
+                            </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Estado/Provincia Residencia Profesional</label>
+                                    <select runat="server" asp-for="registro_profesional.Estado_Provincia_Residencia_Profesional" class="tag-select color-select provincias" id="" value="" onchange="check_Empty()" required>
+                                    <option value="---">---</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="contenedor-datos">
-                            <label class="titulo-valor color-padre">Pais Residencia Profesional</label>
-                            <select runat="server" asp-for="registro_profesional.Pais_Residencia_Profesional" class="tag-select color-select paises" id="" runat="server" value="" onchange="llenar_provincia(0); check_Empty()" required>
-                                <option value="---">---</option>
-                            </select>
-                        </div>
-                        <div class="contenedor-datos">
-                            <label class="titulo-valor color-padre">Estado/Provincia Residencia Profesional</label>
-                                <select runat="server" asp-for="registro_profesional.Estado_Provincia_Residencia_Profesional" class="tag-select color-select provincias" id="" value="" onchange="check_Empty()" required>
-                                <option value="---">---</option>
-                            </select>
-                        </div>
-                    </div>
 
-                    <input class="button-to-submit" type="submit" value="Guardar" />
-                </form>
-            </div>
+                        <input class="button-to-submit" type="submit" value="Guardar" />
+                    </form>
+                </div>
                 break;
-
-
             case 1:
+            <!--clinica-->
                 <div class="contenedor-columna">
                     <input disabled class="contador_record" value="@TempData["contador_de_record"]" />
-                    <form method="post" enctype="multipart/form-data" asp-controller="NuevaEnfermedad" asp-action="Registro_Medio" asp-route-id="2">
-
+                    <input class="contador_codigo" value="@TempData["Codigo_Unico"]" />
+                    <form method="post" enctype="multipart/form-data" asp-controller="NuevaEnfermedad" asp-action="Registro_Medio" asp-route-id="2" asp-route-codigounico="@TempData["Codigo_Unico"]">
                         <div class="contenedor-fila border-padre">
                             <label class="contenedor-titulo color-titulo-padre">Datos Clinica</label>
                             <div class="contenedor-datos">
@@ -113,18 +113,22 @@
                                     <option value="---">---</option>
                                 </select>
                             </div>
+                            <div class="contenedor-datos">
+                                <label class="titulo-valor color-padre">Sitio Web Clinica</label>
+                                <input runat="server" asp-for="registro_clinica.Sitio_Web" class="input-valor border-hijo Web" id="" runat="server" value="" type="text" onkeyup="check_Empty(); checkear_si_pagina_esta_online()" required />
+                            </div>
                         </div>
 
                         <input  class="button-to-submit" type="submit" value="Registrar" />
                     </form>
                 </div>
-
                 break;
-
             case 2:
+            <!--paciente-->
                 <div class="contenedor-columna">
                     <input disabled class="contador_record" value="@TempData["contador_de_record"]" />
-                    <form method="post" enctype="multipart/form-data" asp-controller="NuevaEnfermedad" asp-action="Registro_Medio" asp-route-id="3">
+                    <input class="contador_codigo" value="@TempData["Codigo_Unico"]" />
+                    <form method="post" enctype="multipart/form-data" asp-controller="NuevaEnfermedad" asp-action="Registro_Medio" asp-route-id="3" asp-route-codigounico="@TempData["Codigo_Unico"]">
 
                         <div class="contenedor-fila border-padre">
                             <label class="contenedor-titulo color-titulo-padre">Datos Paciente</label>
@@ -164,7 +168,7 @@
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Fecha Registro</label>
                                 <input runat="server" asp-for="registro_paciente.Fecha_Registro" readonly class="input-date border-hijo" id="" runat="server" value="" type="text" onchange="check_Empty()" required />
-                                <input disabled class="input-date-date border-hijo" id="" runat="server" value="" type="date" onchange="actualizar_fecha(1,'input-date border-hijo','input-date-date border-hijo')" required />
+                                <input disabled class="input-date-date border-hijo" id="" runat="server" value="" type="date" onchange="actualizar_fecha(1,'input-date border-hijo','input-date-date border-hijo')"/>
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Ocupacion Paciente</label>
@@ -211,14 +215,14 @@
                         <input class="button-to-submit" type="submit" value="Registrar" />
                     </form>
                 </div>
-
                 break;
-
             case 3:
+                <!--inyecciones-->
                 <div class="contenedor-columna">
-                    <input disabled class="contador_record" value="@TempData["contador_de_record"]" /> 
-                    <form method="post" enctype="multipart/form-data" asp-controller="NuevaEnfermedad" asp-action="Registro_Medio" asp-route-id="4">
-                        <input runat="server" asp-for="registro_inyecciones.Identificacion_Paciente" class="contador_record" value="@TempData["Cedula_Paciente"]" />
+                    <input disabled class="contador_record" value="@TempData["contador_de_record"]" />
+                    <input class="contador_codigo" value="@TempData["Codigo_Unico"]" />
+                    <form method="post" enctype="multipart/form-data" asp-controller="NuevaEnfermedad" asp-action="Registro_Medio" asp-route-id="4" asp-route-codigounico="@TempData["Codigo_Unico"]">
+                        <input runat="server" asp-for="registro_inyecciones.Identificacion_Paciente" class="contador_record" value="@TempData["cedula_Paciente"]" />
                         <div class="contenedor-fila border-padre">
                             <label class="contenedor-titulo color-titulo-padre">Datos Inyecciones</label>
                             <div class="contenedor-datos">
@@ -262,13 +266,13 @@
                         <input class="button-to-submit" type="submit" value="Registrar" />
                     </form>
                 </div>
-
                 break;
-
             case 4:
+                <!--sintomas-->
                 <div class="contenedor-columna">
                     <input disabled class="contador_record" value=@TempData["contador_de_record"] />
-                    <form method="post" enctype="multipart/form-data" asp-controller="NuevaEnfermedad" asp-action="Registro_Medio" asp-route-id="5">
+                    <input class="contador_codigo" value="@TempData["Codigo_Unico"]" />
+                    <form method="post" enctype="multipart/form-data" asp-controller="NuevaEnfermedad" asp-action="Registro_Medio" asp-route-id="5" asp-route-codigounico="@TempData["Codigo_Unico"]">
                         <input runat="server" asp-for="registro_sintomas.Identificacion_Paciente" class="contador_record" value="@TempData["Cedula_Paciente"]" />
                         <div class="contenedor-fila border-padre">
                             <label class="contenedor-titulo color-titulo-padre">Datos Sintomas</label>
@@ -636,7 +640,6 @@
                         <input class="button-to-submit" type="submit" value="Registrar" />
                     </form>
                 </div>
-
                 break;
 
             default: break;

@@ -22,6 +22,7 @@ Create table datosProfesional(
 	Correo_Electronico_Profesional varchar(300) NOT NULL,
 	Pais_Residencia_Profesional varchar(300) NOT NULL,
 	Estado_Provincia_Residencia_Profesional varchar(300) NOT NULL,
+	Numero_Registro_Unico int NOT NULL,
 	PRIMARY KEY (Identificacion_Profesional)
 );
 
@@ -33,6 +34,7 @@ Create table datosClinica(
 	Pais_Clinica varchar(300) NOT NULL,
 	Estado_Provincia_Clinica varchar(300) NOT NULL,
 	Distrito_Clinica varchar(300),
+	Sitio_Web varchar(300),
 	PRIMARY KEY (Cedula_Juridica_Clinica)
 );
 

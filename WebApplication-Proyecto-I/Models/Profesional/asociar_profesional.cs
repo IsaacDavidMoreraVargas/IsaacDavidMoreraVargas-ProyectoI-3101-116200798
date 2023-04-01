@@ -17,6 +17,8 @@ namespace WebApplication_Proyecto_I.Models.Profesional
 
         public string Estado_Provincia_Residencia_Profesional { get; set; }
 
+        public int Numero_Registro_Unico { get; set; }
+
     }
         
 }

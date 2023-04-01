@@ -1,9 +1,10 @@
-﻿
+﻿var color_error = "1px solid #F5524C";
+var color_correcto = "1px solid black";
 function check_simple() {
 
     let array_Visible = document.getElementsByClassName("contenedor-columna")[0];
     let array_inputs = array_Visible.getElementsByClassName("contenedor-datos");
-    color_border(array_inputs, "1px solid #F5524C", "1px solid black")
+    color_border(array_inputs, color_error, color_correcto)
     //alert("jere");
 }
 

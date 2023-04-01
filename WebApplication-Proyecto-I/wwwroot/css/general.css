@@ -30,10 +30,10 @@ main {
     height: 100%;
     margin-top: 0%;
 }
-.contador_record 
-{
-    display:none;
+.contador_record, .contador_codigo {
+    display: none;
 }
+
 .contenedor-flechas {
     margin-top: 1%;
     width: 99%;
@@ -46,7 +46,6 @@ main {
 
 .contenedor-izquierda, .contenedor-derecha {
     width: 10%;
-    height: 100%;
     background-color: #65CAFC;
     border: 1px solid #65CAFC;
 }
@@ -253,3 +252,5 @@ form {
 .si {}
 
 .no {}
+
+.Web {}
