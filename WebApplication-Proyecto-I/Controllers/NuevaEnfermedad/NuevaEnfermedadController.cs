@@ -246,7 +246,6 @@ namespace WebApplication_Proyecto_I.Controllers.NuevaEnfermedad
         }
         public IActionResult Registro_Medio(int id, int codigounico)
         {
-            Console.WriteLine("REGISTRO--->"+codigounico);
             int cedula = 0;
             switch (id)
             {
@@ -255,7 +254,6 @@ namespace WebApplication_Proyecto_I.Controllers.NuevaEnfermedad
                     {
                         if (codigounico == 0)
                         {
-                            Console.WriteLine("HERE1-----"+ codigounico);
                             Models.numero_unico numero_registrar = new Models.numero_unico();
                             Registro_registro.registro_profesional.Numero_Registro_Unico = Generar_Numero_Registro();
                             numero_registrar.codigo_unico = Registro_registro.registro_profesional.Numero_Registro_Unico;
@@ -265,7 +263,6 @@ namespace WebApplication_Proyecto_I.Controllers.NuevaEnfermedad
                         }else
                         {
                             Registro_registro.registro_profesional.Numero_Registro_Unico = codigounico;
-                            Console.WriteLine("HERE2-----"+ codigounico);
                             foreach (Models.numero_unico numero_registrado in lista_codigos)
                             {
                                 if (numero_registrado.codigo_unico == codigounico)
