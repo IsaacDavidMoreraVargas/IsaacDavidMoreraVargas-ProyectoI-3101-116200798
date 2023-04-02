@@ -102,7 +102,7 @@
                         <div class="contenedor-fila border-padre">
                             <label class="contenedor-titulo color-titulo-padre">Datos Clinica</label>
                             <div class="contenedor-datos">
-                                <label class="titulo-valor color-padre">Pais Clinica</label>
+                                <label class="titulo-valor color-padre">Pais Residencia Clinica</label>
                                 <select runat="server" asp-for="registro_clinica.Pais_Clinica" class="tag-select color-select paises" id="" runat="server" value="" onchange="llenar_provincia(0); check_Empty();" required>
                                     <option value="---">---</option>
                                 </select>
@@ -125,7 +125,7 @@
                             </div>
                         </div>
 
-                        <input  class="button-to-submit" type="submit" value="Registrar" />
+                        <input  class="button-to-submit" type="submit" value="Guardar" />
                     </form>
                 </div>
                 break;
@@ -182,7 +182,7 @@
                                 <input runat="server" asp-for="registro_paciente.Ocupacion_Paciente" class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="check_Empty()" required />
                             </div>
                             <div class="contenedor-datos">
-                                <label class="titulo-valor color-padre">Pais Paciente</label>
+                                <label class="titulo-valor color-padre">Pais Residencia Paciente</label>
                                 <select runat="server" asp-for="registro_paciente.Pais_Paciente" class="tag-select color-select paises" id="" runat="server" value="" onchange="check_Empty();  llenar_provincia(0)" required>
                                     <option value="---">---</option>
                                 </select>
@@ -219,7 +219,7 @@
                             </div>
                         </div>
 
-                        <input class="button-to-submit" type="submit" value="Registrar" />
+                        <input class="button-to-submit" type="submit" value="Guardar" />
                     </form>
                 </div>
                 break;
