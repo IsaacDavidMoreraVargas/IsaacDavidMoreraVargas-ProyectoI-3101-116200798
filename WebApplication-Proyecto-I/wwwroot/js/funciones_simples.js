@@ -4,7 +4,7 @@ function check_simple() {
 
     let array_Visible = document.getElementsByClassName("contenedor-columna")[0];
     let array_inputs = array_Visible.getElementsByClassName("contenedor-datos");
-    color_border(array_inputs, color_error, color_correcto)
+    //color_border(array_inputs, color_error, color_correcto)
     //alert("jere");
 }
 
@@ -103,3 +103,24 @@ function color_border(array, colorSi, colorNo) {
     */
 }
 
+function recortar(elemento,numero_maximo) 
+{
+    let valor_momentaneo = elemento.value;
+    valor_momentaneo = valor_momentaneo.toString();
+    //alert(valor_momentaneo.length + "-" + (numero_maximo - 1));
+    
+    //let valor_momentaneo = elemento.value;
+    //valor_momentaneo = valor_momentaneo.toString();
+    if (valor_momentaneo.length > numero_maximo)
+    {
+        alert(valor_momentaneo.length + "-" + (numero_maximo));
+        let salvar = "";
+        for (let bandera = 0; bandera < numero_maximo; bandera++)
+        {
+            salvar += valor_momentaneo[bandera];
+        }
+        elemento.value = Number(salvar);
+        check_Empty()
+    }
+    
+}

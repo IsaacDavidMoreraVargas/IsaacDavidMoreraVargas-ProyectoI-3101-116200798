@@ -193,6 +193,7 @@ function color_border(array, colorSi, colorNo) {
     let element = document.getElementsByClassName("button-to-submit")[flag_columna];
     if (element != null)
     {
+        
         if (problema == false) {
             element.style.backgroundColor = "black";
             element.disabled = false;
@@ -464,4 +465,19 @@ function Cerrar_Lento(elemento) {
         }
         
     }
+}
+
+function recortar(elemento, numero_maximo) {
+    let valor_momentaneo = elemento.value;
+    valor_momentaneo = valor_momentaneo.toString();
+    if (valor_momentaneo.length > numero_maximo) {
+        //alert(valor_momentaneo.length + "-" + (numero_maximo));
+        let salvar = "";
+        for (let bandera = 0; bandera < numero_maximo; bandera++) {
+            salvar += valor_momentaneo[bandera];
+        }
+        elemento.value = Number(salvar);
+        check_Empty()
+    }
+
 }

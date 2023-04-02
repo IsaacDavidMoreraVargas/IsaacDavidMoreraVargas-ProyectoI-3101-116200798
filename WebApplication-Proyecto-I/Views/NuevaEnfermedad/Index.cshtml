@@ -36,7 +36,7 @@
                             <label class="contenedor-titulo color-titulo-padre">Datos Profesional</label>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Identificacion Profesional</label>
-                                    <input runat="server" asp-for="registro_profesional.Identificacion_Profesional" class="input-valor border-hijo" id="" value="" type="number" onkeyup="consulta_Obtener(0); check_Empty()" required />
+                                <input runat="server" asp-for="registro_profesional.Identificacion_Profesional" class="input-valor border-hijo" id="" value="" type="number" onkeyup="consulta_Obtener(0); recortar(this,9); check_Empty(); " required />
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Codigo Profesional</label>
@@ -44,7 +44,7 @@
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Nombre Completo Profesional</label>
-                                    <input runat="server" asp-for="registro_profesional.Nombre_Completo_Profesional" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" required />
+                                    <input runat="server" asp-for="registro_profesional.Nombre_Completo_Profesional" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" maxlength="300" required />
                             </div>
                         </div>
 
@@ -52,17 +52,17 @@
                             <label class="contenedor-titulo color-titulo-padre">Datos Profesional</label>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Correo Electronico Profesional</label>
-                                    <input runat="server" asp-for="registro_profesional.Correo_Electronico_Profesional" class="input-valor border-hijo" id="" runat="server" value="" type="email" onkeyup="check_Empty()" required />
+                                    <input runat="server" asp-for="registro_profesional.Correo_Electronico_Profesional" class="input-valor border-hijo" id="" runat="server" value="" type="email" onkeyup="check_Empty()" maxlength="300" required />
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Pais Residencia Profesional</label>
-                                <select runat="server" asp-for="registro_profesional.Pais_Residencia_Profesional" class="tag-select color-select paises" id="" runat="server" value="" onchange="llenar_provincia(0); check_Empty()" required>
+                                <select runat="server" asp-for="registro_profesional.Pais_Residencia_Profesional" class="tag-select color-select paises" id="" runat="server" value="" onchange="llenar_provincia(0); check_Empty()" maxlength="300" required>
                                     <option value="---">---</option>
                                 </select>
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Estado/Provincia Residencia Profesional</label>
-                                    <select runat="server" asp-for="registro_profesional.Estado_Provincia_Residencia_Profesional" class="tag-select color-select provincias" id="" value="" onchange="check_Empty()" required>
+                                    <select runat="server" asp-for="registro_profesional.Estado_Provincia_Residencia_Profesional" class="tag-select color-select provincias" id="" value="" onchange="check_Empty()" maxlength="300" required>
                                     <option value="---">---</option>
                                 </select>
                             </div>
@@ -87,15 +87,15 @@
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Nombre Clinica</label>
-                                <input runat="server" asp-for="registro_clinica.Nombre_Clinica" class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="consulta_Obtener(1); check_Empty()" required />
+                                <input runat="server" asp-for="registro_clinica.Nombre_Clinica" class="input-valor border-hijo" id="" runat="server" value="" type="text" onkeyup="consulta_Obtener(1); check_Empty()" maxlength="300" required />
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Telefono Administracion Clinica</label>
-                                <input runat="server" asp-for="registro_clinica.Telefono_Administracion_Clinica" class="input-valor border-hijo" id="" runat="server" value="" type="number" onkeyup="check_Empty()" required />
+                                <input runat="server" asp-for="registro_clinica.Telefono_Administracion_Clinica" class="input-valor border-hijo" id="" runat="server" value="" type="number" onkeyup="recortar(this,8); check_Empty();" required />
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Correo Electronico Administracion</label>
-                                <input runat="server" asp-for="registro_clinica.Correo_Electronico_Administracion" class="input-valor border-hijo" id="" runat="server" value="" type="email" onkeyup="check_Empty()" required />
+                                <input runat="server" asp-for="registro_clinica.Correo_Electronico_Administracion" class="input-valor border-hijo" id="" runat="server" value="" type="email" onkeyup="check_Empty()" maxlength="300" required />
                             </div>
                         </div>
 
@@ -103,25 +103,25 @@
                             <label class="contenedor-titulo color-titulo-padre">Datos Clinica</label>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Pais Residencia Clinica</label>
-                                <select runat="server" asp-for="registro_clinica.Pais_Clinica" class="tag-select color-select paises" id="" runat="server" value="" onchange="llenar_provincia(0); check_Empty();" required>
+                                <select runat="server" asp-for="registro_clinica.Pais_Clinica" class="tag-select color-select paises" id="" runat="server" value="" onchange="llenar_provincia(0); check_Empty();" maxlength="300" required>
                                     <option value="---">---</option>
                                 </select>
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Estado/Provincia Clinica</label>
-                                <select runat="server" asp-for="registro_clinica.Estado_Provincia_Clinica" class="tag-select color-select provincias" id="" runat="server" value="" onchange="check_Empty()" required>
+                                <select runat="server" asp-for="registro_clinica.Estado_Provincia_Clinica" class="tag-select color-select provincias" id="" runat="server" value="" onchange="check_Empty()" maxlength="300" required>
                                     <option value="---">---</option>
                                 </select>
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Distrito Clinica (Opcional)</label>
-                                <select runat="server" asp-for="registro_clinica.Distrito_Clinica" class="tag-select color-select distrito" id="" runat="server" value="" onchange="check_Empty()">
+                                <select runat="server" asp-for="registro_clinica.Distrito_Clinica" class="tag-select color-select distrito" id="" runat="server" value="" onchange="check_Empty()" maxlength="300">
                                     <option value="---">---</option>
                                 </select>
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Sitio Web Clinica</label>
-                                <input runat="server" asp-for="registro_clinica.Sitio_Web" class="input-valor border-hijo Web" id="" runat="server" value="" type="text" onkeyup="check_Empty(); checkear_si_pagina_esta_online()" required />
+                                <input runat="server" asp-for="registro_clinica.Sitio_Web" class="input-valor border-hijo Web" id="" runat="server" value="" type="text" onkeyup="check_Empty(); checkear_si_pagina_esta_online()" maxlength="300" required />
                             </div>
                         </div>
 
@@ -141,19 +141,19 @@
                             <label class="contenedor-titulo color-titulo-padre">Datos Paciente</label>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Identificacion Paciente</label>
-                                <input runat="server" asp-for="registro_paciente.Identificacion_Paciente" class="input-valor border-hijo" id="" value="" type="number" onkeyup="consulta_Obtener(2); check_Empty()" required  />
+                                <input runat="server" asp-for="registro_paciente.Identificacion_Paciente" class="input-valor border-hijo" id="" value="" type="number" onkeyup="consulta_Obtener(2); recortar(this,9); check_Empty(); " required />
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Nombre Paciente</label>
-                                <input runat="server" asp-for="registro_paciente.Nombre_Paciente" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" required />
+                                <input runat="server" asp-for="registro_paciente.Nombre_Paciente" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" maxlength="300" required />
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Primer Apellido Paciente</label>
-                                <input runat="server" asp-for="registro_paciente.Primer_Apellido_Paciente" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" required />
+                                <input runat="server" asp-for="registro_paciente.Primer_Apellido_Paciente" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" maxlength="300" required />
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Segundo Apellido Paciente</label>
-                                <input runat="server" asp-for="registro_paciente.Segundo_Apellido_Paciente" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" required />
+                                <input runat="server" asp-for="registro_paciente.Segundo_Apellido_Paciente" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" maxlength="300" required />
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Fecha Nacimiento Paciente</label>
@@ -162,11 +162,11 @@
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Telefono Contacto Paciente</label>
-                                <input runat="server" asp-for="registro_paciente.Telefono_Contacto_Paciente" class="input-valor border-hijo" id="" value="" type="number" onkeyup="check_Empty()" required />
+                                <input runat="server" asp-for="registro_paciente.Telefono_Contacto_Paciente" class="input-valor border-hijo" id="" value="" type="number" onkeyup="recortar(this,8); check_Empty(); " required />
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Correo Electronico Paciente</label>
-                                <input runat="server" asp-for="registro_paciente.Correo_Electronico_Paciente" class="input-valor border-hijo" id="" value="" type="email" onkeyup="check_Empty()" required />
+                                <input runat="server" asp-for="registro_paciente.Correo_Electronico_Paciente" class="input-valor border-hijo" id="" value="" type="email" onkeyup="check_Empty()" maxlength="300" required />
                             </div>
                         </div>
 
@@ -189,19 +189,19 @@
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Estado/Provincia Paciente</label>
-                                <select runat="server" asp-for="registro_paciente.Estado_Provincia_Paciente" class="tag-select color-select provincias" id="" runat="server" value="" onchange="check_Empty()" required>
+                                <select runat="server" asp-for="registro_paciente.Estado_Provincia_Paciente" class="tag-select color-select provincias" id="" runat="server" value="" onchange="check_Empty()" maxlength="300" required>
                                     <option value="---">---</option>
                                 </select>
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Distrito Paciente (Opcional)</label>
-                                <select runat="server" asp-for="registro_paciente.Distrito_Paciente" class="tag-select color-select distrito" id="" runat="server" value="" onchange="check_Empty()">
+                                <select runat="server" asp-for="registro_paciente.Distrito_Paciente" class="tag-select color-select distrito" id="" runat="server" value="" onchange="check_Empty()" maxlength="300">
                                     <option value="---">---</option>
                                 </select>
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Genero Paciente</label>
-                                <select runat="server" asp-for="registro_paciente.Genero_Paciente" class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" required>
+                                <select runat="server" asp-for="registro_paciente.Genero_Paciente" class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" maxlength="1" required>
                                     <option value="---">---</option>
                                     <option value="M">M</option>
                                     <option value="F">F</option>
@@ -209,7 +209,7 @@
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Estado Civil Paciente</label>
-                                <select runat="server" asp-for="registro_paciente.Estado_Civil_Paciente" class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" required>
+                                <select runat="server" asp-for="registro_paciente.Estado_Civil_Paciente" class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" maxlength="300" required>
                                     <option value="---">---</option>
                                     <option value="Soltero">Soltero</option>
                                     <option value="Casado">Casado</option>
@@ -235,7 +235,7 @@
                             <label class="contenedor-titulo color-titulo-padre">Datos Inyecciones</label>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">¿Tiene la vacuna de Sarampión/Rubeola/Parotiditis?</label>
-                                <select runat="server" asp-for="registro_inyecciones.Sarampión_Rubeola_Parotiditis" class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" required>
+                                <select runat="server" asp-for="registro_inyecciones.Sarampión_Rubeola_Parotiditis" class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" maxlength="40" required>
                                     <option value="---">---</option>
                                     <option value="Si">Si</option>
                                     <option value="No">No</option>
@@ -243,7 +243,7 @@
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">¿Tiene la vacuna del Tétano/Hepatitis A o B/Influenza?</label>
-                                <select runat="server" asp-for="registro_inyecciones.Tetano_Hepatitis_A_B_Influenza" class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" required>
+                                <select runat="server" asp-for="registro_inyecciones.Tetano_Hepatitis_A_B_Influenza" class="tag-select color-select" id="" runat="server" value="" onchange="check_Empty()" maxlength="40" required>
                                     <option value="---">---</option>
                                     <option value="Si">Si</option>
                                     <option value="No">No</option>
@@ -255,7 +255,7 @@
                             <label class="contenedor-titulo color-titulo-padre">Datos Inyecciones</label>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">¿Tiene la vacuna del Covid?</label>
-                                <select runat="server" asp-for="registro_inyecciones.Vacuna_Covid" class="tag-select color-select" id="" runat="server" value="" onchange="cambiar_requerido(this); check_Empty()" required>
+                                <select runat="server" asp-for="registro_inyecciones.Vacuna_Covid" class="tag-select color-select" id="" runat="server" value="" onchange="cambiar_requerido(this); check_Empty()" maxlength="2" required>
                                     <option value="---">---</option>
                                     <option value="Si">Si</option>
                                     <option value="No">No</option>
@@ -267,7 +267,7 @@
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Razón de no poseer vacuna COVID</label>
-                                <input runat="server" asp-for="registro_inyecciones.Razon_Covid" class="input-valor border-hijo no" id="" runat="server" value="" type="text" onkeyup="check_Empty()" />
+                                <input runat="server" asp-for="registro_inyecciones.Razon_Covid" class="input-valor border-hijo no" id="" runat="server" value="" type="text" onkeyup="check_Empty()" maxlength="300" />
                             </div>
                         </div>
 
@@ -328,7 +328,7 @@
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">¿Qué síntomas presenta?</label>
-                                <input runat="server" asp-for="registro_sintomas.T0" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" />
+                                <input runat="server" asp-for="registro_sintomas.T0" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" maxlength="300" />
                             </div>
                             <div class="container-leyenda"><label class="leyenda-titulo">¿Alergias conocidas?</label></div>
                             <div class="contenedor-datos">
@@ -349,7 +349,7 @@
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Otras Alergias</label>
-                                <input runat="server" asp-for="registro_sintomas.T1" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" />
+                                <input runat="server" asp-for="registro_sintomas.T1" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" maxlength="300" />
                             </div>
 
                             <div class="container-leyenda"><label class="leyenda-titulo">¿Ha tenido alguno de los siguientes síntomas?</label></div>
@@ -638,11 +638,11 @@
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">Otros Sintomas</label>
-                                <input runat="server" asp-for="registro_sintomas.C83" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" />
+                                <input runat="server" asp-for="registro_sintomas.C83" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" maxlength="300" />
                             </div>
                             <div class="contenedor-datos">
                                 <label class="titulo-valor color-padre">¿Si ha desarrollado un nuevo cáncer o la reaparición de un cáncer existente,especifique el tipo de cáncer?</label>
-                                <input runat="server" asp-for="registro_sintomas.T2" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" />
+                                <input runat="server" asp-for="registro_sintomas.T2" class="input-valor border-hijo" id="" value="" type="text" onkeyup="check_Empty()" maxlength="300" />
                             </div>
                         </div>
 

@@ -148,7 +148,7 @@ function consulta_Obtener(number_menu)
         default:
             break;
     }
-    
+    check_Empty()
 }
 
 function checkear_si_pagina_esta_online()
