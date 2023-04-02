@@ -154,7 +154,7 @@ Create table datosSintomas(
 	C80 bit,
 	C81 bit,
 	C82 bit,
-	C83 bit,
+	C83 varchar(300),
 	PRIMARY KEY (Identificacion_Paciente)
 );
 
