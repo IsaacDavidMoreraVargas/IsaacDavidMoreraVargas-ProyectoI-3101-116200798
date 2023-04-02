@@ -15,11 +15,10 @@ function primera_vez()
     try { apagar_varios() } catch (e) { }
     try { llenar_paises() } catch (e) { }
     try { llenar_fechas() } catch (e) { }
-    try { } catch (e) { }
-    try { } catch (e) { }
-    
-    actualizar_leyenda()
-    cambiar_tamano()
+    try { actualizar_leyenda() } catch (e) { }
+    try { cambiar_tamano() } catch (e) { }
+
+    Cerrar_Lento()
 }
 
 function cambiar_tamano()
@@ -106,8 +105,10 @@ function check_Empty() {
             array_Visible = array[flag];
         }
     }
-    let array_inputs = array_Visible.getElementsByClassName("contenedor-datos");
-    color_border(array_inputs, "1px solid #F5524C", "1px solid black")
+    try {
+        let array_inputs = array_Visible.getElementsByClassName("contenedor-datos");
+        color_border(array_inputs, "1px solid #F5524C", "1px solid black")
+    } catch { }
     //alert("jere");
 }
 
@@ -248,16 +249,31 @@ function actualizar_leyenda()
                 break;
             }
         }
+        array = document.getElementsByClassName("contenedor-reporte");
+        for (let flag = 0; flag < array.length; flag++) {
+            if (array[flag].style.display != "none") {
+                let contador = array[flag].getElementsByClassName("contador_record")[0].value;
+                contador = contador.split(",");
+                elemento.textContent = "Paso " + contador[0] + " de " + contador[1];
+                //alert("here");
+                break;
+            }
+        }
     }
 }
 
 function columnas_esconder()
 {
     array_columnas = document.getElementsByClassName("contenedor-columna");
-    for (let flag = 0; flag < array_columnas.length; flag++) {
-        array_columnas[flag].style.display = "none";
+    if (array_columnas != null) {
+        for (let flag = 0; flag < array_columnas.length; flag++) {
+            array_columnas[flag].style.display = "none";
+        }
+        try {
+            array_columnas[flag_columna].style.display = "block";
+        } catch { }
     }
-    array_columnas[flag_columna].style.display = "block";
+    
     /*
     let inicio = flag_columna + 1;
     let final = array_columnas.length; //+ 1;
@@ -409,4 +425,43 @@ function cambiar_requerido(elemento)
     elemento2.required = requerido1;
     elemento1.disabled = requerido1;
     elemento2.disabled = requerido2;
+}
+
+function Cerrar_Alerta(elemento) {
+    elemento = elemento.parentElement;
+    elemento = elemento.parentElement;
+    elemento.remove();
+}
+
+function Cerrar_Lento(elemento) {
+  
+    let ventanaalerta = document.getElementsByClassName("contenedor-alerta correcto-alerta")[0];
+    if (ventanaalerta == null)
+    {
+        ventanaalerta = document.getElementsByClassName("contenedor-alerta error-alerta")[0];
+    }
+   
+    if (ventanaalerta != null)
+    {
+        let texto_interno = ventanaalerta.getElementsByClassName("mensaje-alerta correcto-mensaje")[0];
+        if (texto_interno == null)
+        {
+            texto_interno = ventanaalerta.getElementsByClassName("mensaje-alerta error-mensaje")[0];
+        }
+
+        if (texto_interno.textContent.includes("Codigo unico:")) {
+        } else
+        {
+            ventanaalerta.style.opacity = "1";
+            for (let i = 10; i >= 0; i--) {
+                setTimeout(function () {
+                    ventanaalerta.style.opacity = "'0." + i + "'";
+                    if (i == 0) {
+                        ventanaalerta.remove();
+                    }
+                }, (10 - i) * 100);
+            }
+        }
+        
+    }
 }

@@ -11,8 +11,12 @@
     <link rel="stylesheet" type="text/css" href="~/css/general.css" />
     <link rel="stylesheet" type="text/css" href="~/css/dos_columnas.css" />
 </head>
-
+   
 <body onload="primera_vez()">
+    @{
+
+        @Html.Raw(@TempData["Alert-Alert"]);
+    }
     <!--
     <div class="contenedor-flechas"><div class="contenedor-izquierda" onclick="a_la_izquierda()">◀</div><div class="leyenda-flechas">Paso 1 de 3</div> <div class="contenedor-derecha" onclick="a_la_derecha()">▶</div></div>
     -->
@@ -22,6 +26,7 @@
         switch (@TempData["numero_pantalla"])
         {
             case 0:
+                
             <!--profesional-->
                 <div class="contenedor-columna">
                     <input class="contador_record" value="@TempData["contador_de_record"]"/>
@@ -68,6 +73,7 @@
                 </div>
                 break;
             case 1:
+        
             <!--clinica-->
                 <div class="contenedor-columna">
                     <input disabled class="contador_record" value="@TempData["contador_de_record"]" />
@@ -124,6 +130,7 @@
                 </div>
                 break;
             case 2:
+             
             <!--paciente-->
                 <div class="contenedor-columna">
                     <input disabled class="contador_record" value="@TempData["contador_de_record"]" />
@@ -217,7 +224,8 @@
                 </div>
                 break;
             case 3:
-                <!--inyecciones-->
+      
+            <!--inyecciones-->
                 <div class="contenedor-columna">
                     <input disabled class="contador_record" value="@TempData["contador_de_record"]" />
                     <input class="contador_codigo" value="@TempData["Codigo_Unico"]" />
@@ -268,7 +276,8 @@
                 </div>
                 break;
             case 4:
-                <!--sintomas-->
+       
+            <!--sintomas-->
                 <div class="contenedor-columna">
                     <input disabled class="contador_record" value=@TempData["contador_de_record"] />
                     <input class="contador_codigo" value="@TempData["Codigo_Unico"]" />
@@ -641,7 +650,15 @@
                     </form>
                 </div>
                 break;
+            case 5:
 
+            <!--reporte-->
+                <div class="contenedor-reporte">
+                    <input disabled class="contador_record" value=@TempData["contador_de_record"] />
+                    <div class="reporte-leyenda">Reporte de registro</div>  
+                    <div class="reporte-contenido">@Html.Raw(@ViewBag.reporte)</div>
+                </div>
+                break;
             default: break;
         }
     }
