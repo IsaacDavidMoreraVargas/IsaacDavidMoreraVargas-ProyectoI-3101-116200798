@@ -2,7 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    Layout = "_Layout_interno";
+    Layout = "_Layout_vacio";
 }
 
 @model WebApplication_Proyecto_I.Models.Ingreso.asociar_ingreso
@@ -26,7 +26,7 @@
                     </div>
                     <div class="contenedor-datos">
                         <label class="titulo-valor color-padre">Clinica atencion</label>
-                    <select runat="server" asp-for="clinicaProfesional" class="tag-select color-select" id="" runat="server" value="" onchange="check_simple()" required>
+                        <select runat="server" asp-for="clinicaProfesional" class="tag-select color-select" id="" runat="server" value="" onchange="check_simple()" required>
                                 <option value="---">----</option>
                                 <option value="Clinica1">Clinica1</option>
                                 <option value="Clinica2">Clinica2</option>
